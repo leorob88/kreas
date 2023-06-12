@@ -1,9 +1,15 @@
-<script setup>
-import { ref } from 'vue'
-import { apiData } from "./mixins/Data";
+<script>
 
-const {data, error} = apiData();
-console.log(data);
+import useListStore from "./stores/listStore";
+
+export default {
+  setup () {
+    const listStore = useListStore()
+    return {listStore}
+  }
+}
+
+
 //bisogna rivedere un po' la logica dei dati
 //l'acquisto di un prodotto funziona circa ma tornando alla home i dati si resettano...
 
@@ -11,19 +17,13 @@ console.log(data);
 
 <template>
   <div id="main">
-    <div v-if="error">Oops! Error encountered: {{ error.message }}
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/cart">Cart</router-link></li>
       </ul>
     </nav>
-    <br /></div>
-    <div v-else-if="data">
-      Data loaded:
-      <pre>{{ data }}</pre>
-    </div>
-    <div v-else>Loading...</div>
+    <br />
     <router-view :key="$route.path" />
   </div>
 </template>
