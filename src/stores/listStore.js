@@ -11,7 +11,8 @@ console.log(data.value)
 
 const useListStore = defineStore("listStore", {
     state: () => ({
-        list: data.value
+        list: data.value,
+        emptyCart: true
     })
 })
 

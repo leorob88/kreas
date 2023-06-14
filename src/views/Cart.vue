@@ -5,22 +5,22 @@ import Product from "../components/Product.vue";
 
 export default {
   components: { Product },
-  setup() {
+  setup () {
     const listStore = useListStore()
-    let empty = listStore.list.filter(item => item.quantity > 0).length == 0;
+    listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0;
 
     function updateCart() {
-      empty = listStore.list.filter(item => item.quantity > 0).length == 0;
-      console.log(empty)
+      listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0;
+      console.log(listStore.emptyCart)
     }
-    return { listStore, empty, updateCart }
+    return { listStore, updateCart }
   }
 }
 
 </script>
 
 <template>
-  <div v-if="empty" id="no-items">Your cart is empty</div>
+  <div v-if="listStore.emptyCart" id="no-items">Your cart is empty</div>
   <div v-else id="cart">
     <div v-for="product in listStore.list">
       <Product v-if="product.quantity > 0" :page="'cart'" :image="product['image']" :name="product['name']" :quantity="product.quantity"

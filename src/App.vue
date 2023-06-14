@@ -31,16 +31,23 @@ export default {
   font-size: 0.94em;
 }
 
+body{
+  background-color: rgb(23, 23, 23);
+  color: rgb(238, 238, 238);
+}
+
+a{
+  text-decoration: none;
+  color: rgb(0, 189, 126);
+}
+
 #main{
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 100%;
 }
 
 ul{
   padding:0;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   text-decoration: none;
