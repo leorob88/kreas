@@ -9,10 +9,6 @@ export default {
   }
 }
 
-
-//bisogna rivedere un po' la logica dei dati
-//l'acquisto di un prodotto funziona circa ma tornando alla home i dati si resettano...
-
 </script>
 
 <template>
