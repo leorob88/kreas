@@ -33,7 +33,7 @@ export default {
 
 #main{
   width: 100vw;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
