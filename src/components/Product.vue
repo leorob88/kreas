@@ -29,12 +29,12 @@ export default {
 
 <template class="product">
   <div v-if="props.page === 'home'">
-    <a :href="['/details/' + props.id]">
+    <router-link :to="'/details/' + props.id">
       <img :src="props.image" class="preview"/>
       {{ props.name }}
       <br />
       {{ props.price }}€
-    </a>
+    </router-link>
   </div>
   <div v-else>
     <a :href="['/details/' + props.id]">

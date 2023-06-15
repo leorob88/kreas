@@ -7,6 +7,9 @@ export default {
   components: { Product },
   setup () {
     const listStore = useListStore()
+    console.log("home")
+    console.log(listStore.list)
+    console.log(listStore.emptyCart)
     return {listStore}
   }
 }

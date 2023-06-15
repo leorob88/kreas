@@ -7,7 +7,6 @@ data.value = await response.json();
 for (let i = 0; i < data.value.length; i++) {
   data.value[i]["quantity"] = 0;
 }
-console.log(data.value)
 
 const useListStore = defineStore("listStore", {
     state: () => ({

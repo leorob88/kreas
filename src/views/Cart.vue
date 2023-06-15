@@ -7,6 +7,9 @@ export default {
   components: { Product },
   setup () {
     const listStore = useListStore()
+    console.log("cart")
+    console.log(listStore.list)
+    console.log(listStore.emptyCart)
     listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0;
 
     function updateCart() {
