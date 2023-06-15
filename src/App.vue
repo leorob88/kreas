@@ -1,14 +1,12 @@
 <script>
-
-import useListStore from "./stores/listStore";
+import useListStore from './stores/listStore'
 
 export default {
-  setup () {
+  setup() {
     const listStore = useListStore()
-    return {listStore}
+    return { listStore }
   }
 }
-
 </script>
 
 <template>
@@ -20,33 +18,32 @@ export default {
       </ul>
     </nav>
     <br />
-    <router-view :key="$route.path" />
+    <router-view />
   </div>
 </template>
 
 <style>
-
 * {
-  font-family: "Quicksand", "Verdana", "Arial", serif;
+  font-family: 'Quicksand', 'Verdana', 'Arial', serif;
   font-size: 0.94em;
 }
 
-body{
+body {
   background-color: rgb(23, 23, 23);
   color: rgb(238, 238, 238);
 }
 
-a{
+a {
   text-decoration: none;
   color: rgb(0, 189, 126);
 }
 
-#main{
+#main {
   width: 100%;
 }
 
-ul{
-  padding:0;
+ul {
+  padding: 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -54,7 +51,7 @@ ul{
   list-style-type: none;
 }
 
-.product{
+.product {
   padding: 5%;
 }
 
@@ -96,5 +93,4 @@ ul{
     font-size: 1.2em;
   }
 }
-
 </style>
