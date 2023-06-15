@@ -11,7 +11,6 @@ export default {
 
         function less() {
             if (quantity.value > 0) { quantity.value-- }
-            console.log(quantity.value);
         }
         return { listStore, quantity, howMany, less }
     }

@@ -7,16 +7,8 @@ export default {
   components: { Product },
   setup () {
     const listStore = useListStore()
-    console.log("cart")
-    console.log(listStore.list)
-    console.log(listStore.emptyCart)
     listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0;
-
-    function updateCart() {
-      listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0;
-      console.log(listStore.emptyCart)
-    }
-    return { listStore, updateCart }
+    return { listStore }
   }
 }
 
@@ -27,7 +19,8 @@ export default {
   <div v-else id="cart">
     <div v-for="product in listStore.list">
       <Product v-if="product.quantity > 0" :page="'cart'" :image="product['image']" :name="product['name']" :quantity="product.quantity"
-      :id="product['image'].substring(product['image'].lastIndexOf('/') + 1, product['image'].lastIndexOf('.'))" @remove="updateCart()" />
+      :id="product['image'].substring(product['image'].lastIndexOf('/') + 1, product['image'].lastIndexOf('.'))"
+      @remove="listStore.emptyCart = listStore.list.filter(item => item.quantity > 0).length == 0" />
     </div>
   </div>
 </template>
