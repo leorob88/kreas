@@ -1,10 +1,11 @@
 <script>
 
-import useListStore from "./stores/listStore";
+import state from "./stores/listStore";
 
 export default {
   setup () {
-    const listStore = useListStore()
+    const listStore = state
+    console.log(listStore)
     return {listStore}
   }
 }
@@ -13,14 +14,7 @@ export default {
 
 <template>
   <div id="main">
-    <nav>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/cart">Cart</router-link></li>
-      </ul>
-    </nav>
-    <br />
-    <router-view :key="$route.path" />
+    {{ listStore }}
   </div>
 </template>
 

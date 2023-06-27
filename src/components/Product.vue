@@ -1,48 +1,9 @@
 <script>
 
-import useListStore from "../stores/listStore";
-
-export default {
-  methods: {
-    handleRemove() {
-      this.listStore.list.filter(item => item.name === this.props.name)[0].quantity = 0;
-      this.$emit("remove")
-    }
-  },
-  props: {
-      page: String,
-      image: String,
-      name: String,
-      price: Number,
-      id: String,
-      quantity: Number
-  },
-  setup(props) {
-    const listStore = useListStore();
-
-    const totalPrice = listStore.list.filter(item => item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.')) === props.id)[0].quantity * listStore.list.filter(item => item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.')) === props.id)[0].price
-    return { listStore, props, totalPrice}
-  }
-}
 
 </script>
 
 <template class="product">
-  <div v-if="props.page === 'home'">
-    <router-link :to="'/details/' + props.id">
-      <img :src="props.image" class="preview"/>
-      {{ props.name }}
-      <br />
-      {{ props.price }}€
-    </router-link>
-  </div>
-  <div v-else>
-    <a :href="['/details/' + props.id]">
-      <img :src="props.image" class="cartList" />
-    </a>
-    {{ props.name }}: {{ props.quantity }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€
-    <button @click="handleRemove">Remove</button>
-  </div>
 </template>
 
 <style>
