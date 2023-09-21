@@ -1,9 +1,31 @@
-<script>
+<script setup>
 
+import { storeToRefs } from "pinia";
+import { computed } from "vue";
+import { useCulturedMeatStore } from "../stores/listStore";
+import Product from "../components/Product.vue"
+
+const culturedMeatStore = useCulturedMeatStore();
+const {items, loading, loaded, error} = storeToRefs(culturedMeatStore);
+const showList = computed(() => !loading.value && loaded.value);
+
+console.log("home")
 
 </script>
 
 <template>
+  <div id="home">
+    
+    <p v-if="loading">Loading...</p>
+
+    <div v-if="showList" v-for="(item, index) in items">
+      <Product :page="'home'" :image="item.image" :name="item.name" :price="item.price"
+      :id="item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.'))" />
+    </div>
+
+    <p v-if="error">{{ error }}</p>
+
+  </div>
 </template>
 
 <style>

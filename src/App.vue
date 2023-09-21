@@ -1,20 +1,25 @@
-<script>
+<script setup>
 
-import state from "./stores/listStore";
+import { useCulturedMeatStore } from "./stores/listStore";
+import { ref } from "vue";
 
-export default {
-  setup () {
-    const listStore = state
-    console.log(listStore)
-    return {listStore}
-  }
-}
+const culturedMeatStore = useCulturedMeatStore();
+const {fetchCulturedMeatList} = culturedMeatStore;
+
+fetchCulturedMeatList();
 
 </script>
 
 <template>
   <div id="main">
-    {{ listStore }}
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/cart">Cart</router-link></li>
+      </ul>
+    </nav>
+    <br />
+    <router-view :key="$route.path" />
   </div>
 </template>
 

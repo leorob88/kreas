@@ -1,23 +1,56 @@
 
-import { useStorage } from "@vueuse/core";
-import axios from "axios";
+import {defineStore} from "pinia";
+import { ref } from "vue";
 
-const theDefault = fetchData();
+let emptyCart = ref(true);
 
-const state = useStorage('vue-use-local-storage', theDefault)
+const getAll = async () => {
+  const url = "https://ott-fogliata.github.io/vuejs-s2i-repository/cultured-meat.json";
 
-  async function fetchData() {
-    try {
-      const data = await axios.get("https://ott-fogliata.github.io/vuejs-s2i-repository/cultured-meat.json");
-      for (let i = 0; i < data.data.length; i++) {
-        data.data[i]["quantity"] = 0;
+  try{
+      const response = await fetch(url);
+
+      const status = response.status;
+
+      if(status === 200) {
+          return response.json();
       }
-      console.log(data)
-      return data.data;
-      
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
-  export default state
+      throw new Error(`Richiesta fallita con codice ${status}.`);
+  } catch(err) {
+      throw err;
+  }
+}
+
+const useCulturedMeatStore = defineStore("culturedMeat", () => {
+    const items = ref([]);
+    const loading = ref(false);
+    const loaded = ref(false);
+    const error = ref("");
+
+    const fetchCulturedMeatList = async () => {
+        try {
+            error.value = "";
+            loading.value = true;
+            const response = await getAll();
+            items.value = addQuantity(response, 0);
+            loaded.value = true;
+        } catch (err) {
+            items.value = [];
+            loaded.value = false;
+            error.value = err.message;
+            throw err;
+        } finally {
+            loading.value = false;
+        }
+    }
+
+    return {items, loading, loaded, error, fetchCulturedMeatList};
+})
+
+
+const addQuantity = (items, quantity) => {
+    return items.map(item => ({...item, quantity}))
+}
+
+export { emptyCart, useCulturedMeatStore, addQuantity }
