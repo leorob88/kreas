@@ -1,17 +1,20 @@
 <script setup>
 
 import { useCulturedMeatStore } from "./stores/listStore";
-import { ref } from "vue";
+import { storeToRefs } from "pinia";
 
 const culturedMeatStore = useCulturedMeatStore();
 const {fetchCulturedMeatList} = culturedMeatStore;
 
 fetchCulturedMeatList();
 
+const {items} = storeToRefs(culturedMeatStore);
+//togliere la riga qui sopra e il button nel template
 </script>
 
 <template>
   <div id="main">
+    <button @click="items['0'].quantity++; console.log(items['0'].quantity)">fdsfs</button>
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>

@@ -47,7 +47,7 @@ const totalPrice = product.quantity * product.price;
     </router-link>
   </div>
   <div v-else>
-    <router-link :href="['/details/' + props.id]">
+    <router-link :to="['/details/' + props.id]">
       <img :src="props.image" class="cartList" />
     </router-link>
     {{ props.name }}: {{ props.quantity }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€

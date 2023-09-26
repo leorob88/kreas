@@ -22,7 +22,7 @@ function updateCart() {
   <div v-else id="cart">
     <div v-for="item in items">
       <Product v-if="item.quantity > 0" :page="'cart'" :image="item.image" :name="item.name" :quantity="item.quantity"
-      :id="item.image.substring(product['image'].lastIndexOf('/') + 1, product['image'].lastIndexOf('.'))" @remove="updateCart()" />
+      :id="item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.'))" @remove="updateCart()" />
     </div>
   </div>
 </template>
