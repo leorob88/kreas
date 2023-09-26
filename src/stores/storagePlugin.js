@@ -11,7 +11,7 @@ export function storagePlugin(context) {
         };
     }
     const {store} = context;
-    store.$patch({ ...culturedMeatStore });
+    store.$patch({ ...culturedMeatStore() });
     store.$subscribe((_mutation, state) => {
         console.log(state)
         const stateForLocalStorage = { items: state.items, loaded: state.loaded};
