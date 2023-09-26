@@ -4,6 +4,9 @@ import { storagePlugin } from './stores/storagePlugin';
 import App from './App.vue'
 import router from "./router";
 
-createApp(App).use(createPinia());
-createPinia().use(storagePlugin)
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+const pinia = createPinia()
+
+app.use(pinia);
+pinia.use(storagePlugin)
+app.use(router).mount('#app')

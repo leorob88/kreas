@@ -10,7 +10,7 @@ export function storagePlugin(context) {
             return {};
         };
     }
-    const store = context;
+    const {store} = context;
     store.$patch({ ...culturedMeatStore });
     store.$subscribe((_mutation, state) => {
         console.log(state)
