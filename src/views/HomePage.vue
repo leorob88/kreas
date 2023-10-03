@@ -18,9 +18,8 @@ console.log("home")
     
     <p v-if="loading">Loading...</p>
 
-    <div v-if="showList" v-for="(item, index) in items">
-      <Product :page="'home'" :image="item.image" :name="item.name" :price="item.price"
-      :id="item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.'))" />
+    <div v-if="showList" v-for="(item) in items">
+      <Product :page="'home'" :item="item" />
     </div>
 
     <p v-if="error">{{ error }}</p>

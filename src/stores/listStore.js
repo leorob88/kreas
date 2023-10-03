@@ -2,8 +2,6 @@
 import {defineStore} from "pinia";
 import { ref } from "vue";
 
-let emptyCart = ref(true);
-
 const getAll = async () => {
   const url = "https://ott-fogliata.github.io/vuejs-s2i-repository/cultured-meat.json";
 
@@ -22,7 +20,7 @@ const getAll = async () => {
   }
 }
 
-const useCulturedMeatStore = defineStore("culturedMeat", () => {
+export const useCulturedMeatStore = defineStore("culturedMeat", () => {
     const items = ref([]);
     const loading = ref(false);
     const loaded = ref(false);
@@ -33,7 +31,7 @@ const useCulturedMeatStore = defineStore("culturedMeat", () => {
             error.value = "";
             loading.value = true;
             const response = await getAll();
-            items.value = addQuantity(response, 0);
+            items.value = addItem(response);
             loaded.value = true;
         } catch (err) {
             items.value = [];
@@ -49,8 +47,6 @@ const useCulturedMeatStore = defineStore("culturedMeat", () => {
 })
 
 
-const addQuantity = (items, quantity) => {
-    return items.map(item => ({...item, quantity}))
+const addItem = (items) => {
+    return items.map(item => ({...item, id: item.name}))
 }
-
-export { emptyCart, useCulturedMeatStore, addQuantity }

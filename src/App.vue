@@ -8,13 +8,15 @@ const {fetchCulturedMeatList} = culturedMeatStore;
 
 fetchCulturedMeatList();
 
-const {items} = storeToRefs(culturedMeatStore);
+import { useCartStore } from "./stores/cartStore";
+const cartStore = useCartStore();
+const {products} = storeToRefs(cartStore);
 //togliere la riga qui sopra e il button nel template
 </script>
 
 <template>
   <div id="main">
-    <button @click="items['0'].quantity++; console.log(items['0'].quantity)">fdsfs</button>
+    <button @click="products[0].quantity++; console.log(products[0].quantity)">fdsfs</button>
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>

@@ -1,57 +1,42 @@
 <script setup>
 
 import { storeToRefs } from "pinia";
-import { useCulturedMeatStore } from "../stores/listStore";
+import { useCartStore } from "../stores/cartStore";
 
 const props = defineProps({
   page: {
     type: String
   },
-  image: {
-    type: String
-  },
-  name: {
-    type: String
-  },
-  price: {
-    type: Number
-  },
-  id: {
-    type: String
-  },
-  quantity: {
-    type: Number
+  item: {
+    type: Object,
+    required: true
   }
 });
 
-const culturedMeatStore = useCulturedMeatStore();
-const {items} = storeToRefs(culturedMeatStore);
+const cartStore = useCartStore();
+const {products} = storeToRefs(cartStore);
+const {removeToCart, getQuantityByName} = cartStore;
 
-function handleRemove () {
-  this.items.value.filter(item => item.name === this.props.name)[0].quantity = 0;
-  this.$emit("remove");
-}
-
-const product = items.value.filter(item => item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.')) === props.id)[0]; //filters the product with the name stated in image
-const totalPrice = product.quantity * product.price;
+const product = products.value.filter(element => element.name === props.item.name)[0] || props.item.name;
+const totalPrice = getQuantityByName(product.name) * product.price;
 
 </script>
 
 <template class="product">
   <div v-if="props.page === 'home'">
-    <router-link :to="'/details/' + props.id">
-      <img :src="props.image" class="preview"/>
-      {{ props.name }}
+    <router-link :to="'/details/' + props.item.name">
+      <img :src="props.item.image" class="preview"/>
+      {{ props.item.name }}
       <br />
-      {{ props.price }}€
+      {{ props.item.price }}€
     </router-link>
   </div>
   <div v-else>
-    <router-link :to="['/details/' + props.id]">
-      <img :src="props.image" class="cartList" />
+    <router-link :to="['/details/' + props.item.name]">
+      <img :src="props.item.image" class="cartList" />
     </router-link>
-    {{ props.name }}: {{ props.quantity }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€
-    <button @click="handleRemove">Remove</button>
+    {{ props.item.name }}: {{ getQuantityByName(props.item.name) }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€
+    <button @click="removeToCart(props.item.name)">Remove</button>
   </div>
 </template>
 

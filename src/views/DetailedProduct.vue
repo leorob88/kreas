@@ -1,42 +1,47 @@
 <script setup>
 
-import { reactive } from "vue";
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useCulturedMeatStore } from "../stores/listStore";
+import { useCartStore } from "../stores/cartStore";
 
 const culturedMeatStore = useCulturedMeatStore();
+const cartStore = useCartStore();
 const {items} = storeToRefs(culturedMeatStore);
+const {products} = storeToRefs(cartStore);
+const {addToCart} = cartStore;
 
-const product = items.value.filter(item => item.image.substring(item.image.lastIndexOf('/') + 1, item.image.lastIndexOf('.')) === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length))[0];
+const item = items.value.filter(element => element.name === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length))[0];
+let product = products.value.filter(element => element.name === item.name)[0] || 0;
+console.log(item)
 console.log(product)
-
-let quantity = reactive({ value: 0 });
-let howMany = reactive({ visibility: false });
-
-function less() {
-    if (quantity.value > 0) { quantity.value-- }
-    console.log(quantity.value);
+const updateProduct = () => {
+    product = products.value.filter(element => element.name === item.name)[0] || 0
 }
+
+let howMany = ref(0);
+const howManyVisible = ref(false);
+
 </script>
 
 <template>
     <div>
-        <img id="image" :src="[product.image]" />
-        {{ product.name }}
+        <img id="image" :src="[item.image]" />
+        {{ item.name }}
         <br />
-        {{ product.description }}
+        {{ item.description }}
         <br />
-        {{ product.price }}€
+        {{ item.price }}€   
         <br />
-        <button @click="howMany.visibility = true">Add to cart</button>
-        <span v-if="howMany.visibility">
-                <button @click="less()">-</button>
-                <span>{{ quantity.value }}</span>
-                <button @click="quantity.value++">+</button>
-                <button @click="howMany.visibility = false; product.quantity += quantity.value">Ok</button>
-                <button @click="howMany.visibility = false">Cancel</button>
+        <button @click="howManyVisible = true">Add to cart</button>
+        <span v-if="howManyVisible">
+                <button @click="howMany--" :disabled="howMany < 1">-</button>
+                <span>{{ howMany }}</span>
+                <button @click="howMany++">+</button>
+                <button @click="howManyVisible = false; addToCart(item, howMany); howMany = 0; updateProduct()">Ok</button>
+                <button @click="howManyVisible = false; howMany = 0">Cancel</button>
         </span>
-        <div>Currently added: {{ product.quantity }}</div>
+        <div>Currently added: {{ product?.quantity || 0 }}</div>
     </div>
 </template>
 
