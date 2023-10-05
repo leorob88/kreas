@@ -5,25 +5,24 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
     const products = ref([]);
 
     const addToCart = (product, howMany) => {
-        const index = products.value.findIndex(element => element.name === product.name);
-        if (index < 0) {
+        for (let i = 0; i < howMany; i++) {
             const newItem = {
                 id: product.name,
                 productId: product.id,
                 name: product.name,
-                price: product.price,
-                quantity: howMany
+                price: product.price
             };
             products.value.push(newItem);
-        } else {
-            products.value[index].quantity += howMany;
         }
-        
     }
 
     const removeToCart = (name) => {
-        let index = products.value.findIndex((element) => element.name === name);
-        products.value[index].quantity = 0;
+        for (let i = 0; i < products.value.length; i++) {
+            if (products.value[i].name == name) {
+                products.value.splice(i, 1)
+            }
+        }
+        console.log(products)
     }
 
     const clearCart = () => {
@@ -31,8 +30,7 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
     }
 
     const getQuantityByName = (name) => {
-        let index = products.value.findIndex((element) => element.name === name);
-        return computed(() => products[index]?.quantity || 0);
+        return computed(() => products.value.filter(product => product,name === name).length);
     };
 
     const emptyCart = computed(() => {
@@ -45,9 +43,7 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
         let totalPrice = 0;
         if (products.value.length > 0) {
             for (let i = 0; i < products.value.length; i++) {
-                const product = products.value[i];
-                const productTotal = product.price * product.quantity;
-                totalPrice += productTotal;
+                totalPrice += products.value[i].price;
             }
         }        
         return totalPrice;

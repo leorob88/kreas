@@ -10,13 +10,18 @@ fetchCulturedMeatList();
 
 import { useCartStore } from "./stores/cartStore";
 const cartStore = useCartStore();
+const {addToCart, getQuantityByName} = cartStore;
 const {products} = storeToRefs(cartStore);
+const testAdd = () => {
+  addToCart(products.value[0], 1);
+  console.log(getQuantityByName(products.value[0].name).value)
+}
 //togliere la riga qui sopra e il button nel template
 </script>
 
 <template>
   <div id="main">
-    <button @click="products[0].quantity++; console.log(products[0].quantity)">fdsfs</button>
+    <button @click="testAdd()">fdsfs</button>
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>

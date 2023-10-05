@@ -8,16 +8,11 @@ import { useCartStore } from "../stores/cartStore";
 const culturedMeatStore = useCulturedMeatStore();
 const cartStore = useCartStore();
 const {items} = storeToRefs(culturedMeatStore);
-const {products} = storeToRefs(cartStore);
+const {getQuantityByName} = cartStore;
 const {addToCart} = cartStore;
 
 const item = items.value.filter(element => element.name === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length))[0];
-let product = products.value.filter(element => element.name === item.name)[0] || 0;
 console.log(item)
-console.log(product)
-const updateProduct = () => {
-    product = products.value.filter(element => element.name === item.name)[0] || 0
-}
 
 let howMany = ref(0);
 const howManyVisible = ref(false);
@@ -38,10 +33,10 @@ const howManyVisible = ref(false);
                 <button @click="howMany--" :disabled="howMany < 1">-</button>
                 <span>{{ howMany }}</span>
                 <button @click="howMany++">+</button>
-                <button @click="howManyVisible = false; addToCart(item, howMany); howMany = 0; updateProduct()">Ok</button>
+                <button @click="addToCart(item, howMany); howManyVisible = false; howMany = 0">Ok</button>
                 <button @click="howManyVisible = false; howMany = 0">Cancel</button>
         </span>
-        <div>Currently added: {{ product?.quantity || 0 }}</div>
+        <div>Currently added: {{ getQuantityByName(item.name) }}</div>
     </div>
 </template>
 

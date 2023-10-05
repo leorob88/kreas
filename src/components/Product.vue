@@ -1,6 +1,5 @@
 <script setup>
 
-import { storeToRefs } from "pinia";
 import { useCartStore } from "../stores/cartStore";
 
 const props = defineProps({
@@ -14,11 +13,9 @@ const props = defineProps({
 });
 
 const cartStore = useCartStore();
-const {products} = storeToRefs(cartStore);
 const {removeToCart, getQuantityByName} = cartStore;
 
-const product = products.value.filter(element => element.name === props.item.name)[0] || props.item.name;
-const totalPrice = getQuantityByName(product.name) * product.price;
+const totalPrice = props.item.price * getQuantityByName(props.item.name);
 
 </script>
 
