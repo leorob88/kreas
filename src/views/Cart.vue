@@ -27,14 +27,14 @@ for (let a = 0; a < products.value.length; a++) {
 }
 const getItem = (name) => {
   const item = items.value.filter(element => element.name === name)[0];
-  return computed (() => item);
+  return item;
 }
 
 console.log("cart")
 console.log(items)
 console.log(products)
 console.log(uniqueList);
-//il carrello non funziona, per qualche ragione non riesce a leggere l'item da passare al componente Product
+
 </script>
 
 <template>
@@ -42,7 +42,7 @@ console.log(uniqueList);
   <div v-else id="cart">
     <span>Total price: {{ totalCartPrice }}€</span>&nbsp;&nbsp;&nbsp;&nbsp;<button @click="clearCart">Empty cart</button>
     <div v-for="(product) in uniqueList">
-      <Product :page="'cart'" :item="getItem(product.name)" />
+      <Product :item="getItem(product.name)" />
     </div>
   </div>
 </template>

@@ -1,29 +1,31 @@
 
+function getStateFromLocalStorage(storeName) {
+    const storedState = localStorage.getItem(storeName);
+    try {
+        return JSON.parse(storedState || "{}");
+    } catch (err) {
+        console.error(err);
+        return {};
+    };
+}
 
 function createStateForStorage(storeId, state) {
     switch (storeId) {
         case "culturedMeat":
         return JSON.stringify({ items: state.items, loaded: state.loaded });
         case "myAwesomeCart":
-        return JSON.stringify({ items: state.items });
+        return JSON.stringify({ products: state.products });
         default:
         return '{}';
     }
 }
 
 export function storagePlugin(context) {
-    const {store} = context;
-    const state = () => {
-        const storedState = localStorage.getItem(store);
-        try {
-            return JSON.parse(storedState || "{}");
-        } catch (err) {
-            console.error(err);
-            return {};
-        };
-    }
-    store.$patch({ ...state});
-    store.$subscribe(({storeId}, state) => {
+    const state = getStateFromLocalStorage(context.store.$id);
+    console.log(context)
+    context.store.$patch({ ...state});
+    context.store.$subscribe(({storeId}, state) => {
+        console.log(storeId, state);
         localStorage.setItem(storeId, createStateForStorage(storeId, state));
     });
 }

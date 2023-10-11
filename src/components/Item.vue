@@ -1,37 +1,32 @@
 <script setup>
 
-import { computed } from "vue";
-import { useCartStore } from "../stores/cartStore";
-
 const props = defineProps({
+  page: {
+    type: String
+  },
   item: {
     type: Object,
     required: true
   }
 });
 
-const cartStore = useCartStore();
-const {removeToCart, getQuantityByName} = cartStore;
-
-const quantity = getQuantityByName(props.item.name);
-const totalPrice = computed(() => props.item.price * quantity.value);
-
 </script>
 
 <template class="product">
   <div>
     <router-link :to="'/details/' + props.item.name">
-      <img :src="props.item.image" class="cartList" />
+      <img :src="props.item.image" class="preview"/>
+      {{ props.item.name }}
+      <br />
+      {{ props.item.price }}€
     </router-link>
-    {{ props.item.name }}: {{ quantity }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€
-    <button @click="removeToCart(props.item.name)">Remove</button>
   </div>
 </template>
 
 <style>
 
-.cartList{
-  width: 30%;
+.preview{
+  width: 100%;
 }
 
 @media (min-width: 576px) {

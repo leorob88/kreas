@@ -1,27 +1,22 @@
 <script setup>
 
 import { useCulturedMeatStore } from "./stores/listStore";
-import { storeToRefs } from "pinia";
 
 const culturedMeatStore = useCulturedMeatStore();
 const {fetchCulturedMeatList} = culturedMeatStore;
 
 fetchCulturedMeatList();
 
-import { useCartStore } from "./stores/cartStore";
-const cartStore = useCartStore();
-const {addToCart, getQuantityByName} = cartStore;
-const {products} = storeToRefs(cartStore);
-const testAdd = () => {
-  addToCart(products.value[0], 1);
-  console.log(getQuantityByName(products.value[0].name).value)
-}
-//togliere la riga qui sopra e il button nel template
+//rimangono da fare:
+//css
+//logo nella home
+//sconto 10% sul totale se si comprano almeno 3 prodotti
+//sostituire props item con soltanto name, poi con il name fa le cose?
+//mettere selettore howMany anche nel carrello?
 </script>
 
 <template>
   <div id="main">
-    <button @click="testAdd()">fdsfs</button>
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>

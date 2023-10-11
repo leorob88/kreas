@@ -11,7 +11,7 @@ const {items} = storeToRefs(culturedMeatStore);
 const {getQuantityByName} = cartStore;
 const {addToCart} = cartStore;
 
-const item = items.value.filter(element => element.name === window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length))[0];
+const item = items.value.filter(element => element.name === decodeURI(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length)))[0];
 console.log(item)
 
 let howMany = ref(0);

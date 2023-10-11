@@ -3,7 +3,7 @@
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { useCulturedMeatStore } from "../stores/listStore";
-import Product from "../components/Product.vue"
+import Item from "../components/Item.vue"
 
 const culturedMeatStore = useCulturedMeatStore();
 const {items, loading, loaded, error} = storeToRefs(culturedMeatStore);
@@ -19,7 +19,7 @@ console.log("home")
     <p v-if="loading">Loading...</p>
 
     <div v-if="showList" v-for="(item) in items">
-      <Product :page="'home'" :item="item" />
+      <Item :item="item" />
     </div>
 
     <p v-if="error">{{ error }}</p>

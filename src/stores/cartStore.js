@@ -5,14 +5,16 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
     const products = ref([]);
 
     const addToCart = (product, howMany) => {
-        for (let i = 0; i < howMany; i++) {
-            const newItem = {
-                id: product.name,
-                productId: product.id,
-                name: product.name,
-                price: product.price
-            };
-            products.value.push(newItem);
+        if (howMany > 0) {
+            for (let i = 0; i < howMany; i++) {
+                const newItem = {
+                    id: product.name,
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price
+                };
+                products.value.push(newItem);
+            }
         }
     }
 
@@ -30,7 +32,7 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
     }
 
     const getQuantityByName = (name) => {
-        return computed(() => products.value.filter(product => product,name === name).length);
+        return computed(() => products.value.filter(product => product.name === name).length);
     };
 
     const emptyCart = computed(() => {
