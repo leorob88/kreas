@@ -12,8 +12,7 @@ const props = defineProps({
 
 const cartStore = useCartStore();
 const {removeToCart, getQuantityByName} = cartStore;
-
-const quantity = getQuantityByName(props.item.name);
+const quantity = computed(() => getQuantityByName(props.item.name));
 const totalPrice = computed(() => props.item.price * quantity.value);
 
 </script>

@@ -9,8 +9,6 @@ const culturedMeatStore = useCulturedMeatStore();
 const {items, loading, loaded, error} = storeToRefs(culturedMeatStore);
 const showList = computed(() => !loading.value && loaded.value);
 
-console.log("home")
-
 </script>
 
 <template>

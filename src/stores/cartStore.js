@@ -18,13 +18,25 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
         }
     }
 
-    const removeToCart = (name) => {
-        for (let i = 0; i < products.value.length; i++) {
-            if (products.value[i].name == name) {
-                products.value.splice(i, 1)
+    const uniqueList = computed(() => {
+        let unique = [];
+        for (let a = 0; a < products.value.length; a++) {
+          let check = false;
+          for (let b = 0; b < unique.length; b++) {
+            if (products.value[a].name === unique[b].name) {
+              check = true;
+              break;
             }
+          }
+          if (!check) {
+            unique.push(products.value[a])
+          }
         }
-        console.log(products)
+        return unique;
+    })
+
+    const removeToCart = (name) => {
+        products.value = products.value.filter(product => product.name !== name);
     }
 
     const clearCart = () => {
@@ -32,12 +44,11 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
     }
 
     const getQuantityByName = (name) => {
-        return computed(() => products.value.filter(product => product.name === name).length);
+        return products.value.filter(product => product.name === name).length;
     };
 
     const emptyCart = computed(() => {
         let empty = products.value.length === 0;
-        console.log(products.value.length)
         return empty;
     })
 
@@ -47,9 +58,10 @@ export const useCartStore = defineStore("myAwesomeCart", () => {
             for (let i = 0; i < products.value.length; i++) {
                 totalPrice += products.value[i].price;
             }
-        }        
-        return totalPrice;
+        }
+        if (products.value.length > 2) { totalPrice *= 0.9;}
+        return totalPrice.toFixed(2);
     })
 
-    return {products, addToCart, removeToCart, clearCart, getQuantityByName, emptyCart, totalCartPrice};
+    return {products, addToCart, uniqueList, removeToCart, clearCart, getQuantityByName, emptyCart, totalCartPrice};
 })

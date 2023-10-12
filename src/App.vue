@@ -10,8 +10,7 @@ fetchCulturedMeatList();
 //rimangono da fare:
 //css
 //logo nella home
-//sconto 10% sul totale se si comprano almeno 3 prodotti
-//sostituire props item con soltanto name, poi con il name fa le cose?
+//rinominare elementi rispetto al progetto di mattia
 //mettere selettore howMany anche nel carrello?
 </script>
 
