@@ -11,9 +11,9 @@ function getStateFromLocalStorage(storeName) {
 
 function createStateForStorage(storeId, state) {
     switch (storeId) {
-        case "culturedMeat":
+        case "listStore":
         return JSON.stringify({ items: state.items, loaded: state.loaded });
-        case "myAwesomeCart":
+        case "cartStore":
         return JSON.stringify({ products: state.products });
         default:
         return '{}';

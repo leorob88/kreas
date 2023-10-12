@@ -1,9 +1,6 @@
 <script setup>
 
 const props = defineProps({
-  page: {
-    type: String
-  },
   item: {
     type: Object,
     required: true

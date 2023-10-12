@@ -2,11 +2,11 @@
 
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import { useCulturedMeatStore } from "../stores/listStore";
+import { useListStore } from "../stores/listStore";
 import Item from "../components/Item.vue"
 
-const culturedMeatStore = useCulturedMeatStore();
-const {items, loading, loaded, error} = storeToRefs(culturedMeatStore);
+const listStore = useListStore();
+const {items, loading, loaded, error} = storeToRefs(listStore);
 const showList = computed(() => !loading.value && loaded.value);
 
 </script>

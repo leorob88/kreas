@@ -20,13 +20,13 @@ const getAll = async () => {
   }
 }
 
-export const useCulturedMeatStore = defineStore("culturedMeat", () => {
+export const useListStore = defineStore("listStore", () => {
     const items = ref([]);
     const loading = ref(false);
     const loaded = ref(false);
     const error = ref("");
 
-    const fetchCulturedMeatList = async () => {
+    const fetchData = async () => {
         try {
             error.value = "";
             loading.value = true;
@@ -43,7 +43,7 @@ export const useCulturedMeatStore = defineStore("culturedMeat", () => {
         }
     }
 
-    return {items, loading, loaded, error, fetchCulturedMeatList};
+    return {items, loading, loaded, error, fetchData};
 })
 
 

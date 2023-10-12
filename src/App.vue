@@ -1,16 +1,15 @@
 <script setup>
 
-import { useCulturedMeatStore } from "./stores/listStore";
+import { useListStore } from "./stores/listStore";
 
-const culturedMeatStore = useCulturedMeatStore();
-const {fetchCulturedMeatList} = culturedMeatStore;
+const listStore = useListStore();
+const {fetchData} = listStore;
 
-fetchCulturedMeatList();
+fetchData();
 
 //rimangono da fare:
 //css
 //logo nella home
-//rinominare elementi rispetto al progetto di mattia
 //mettere selettore howMany anche nel carrello?
 </script>
 

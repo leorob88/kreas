@@ -2,12 +2,12 @@
 
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useCulturedMeatStore } from "../stores/listStore";
+import { useListStore } from "../stores/listStore";
 import { useCartStore } from "../stores/cartStore";
 
-const culturedMeatStore = useCulturedMeatStore();
+const listStore = useListStore();
 const cartStore = useCartStore();
-const {items} = storeToRefs(culturedMeatStore);
+const {items} = storeToRefs(listStore);
 const {getQuantityByName} = cartStore;
 const {addToCart} = cartStore;
 

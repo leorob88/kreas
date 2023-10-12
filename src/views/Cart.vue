@@ -1,16 +1,15 @@
 <script setup>
 
 import { storeToRefs } from "pinia";
-import { useCulturedMeatStore } from "../stores/listStore";
+import { useListStore } from "../stores/listStore";
 import { useCartStore } from "../stores/cartStore";
 import Product from "../components/Product.vue";
 
-const culturedMeatStore = useCulturedMeatStore();
-const {items} = storeToRefs(culturedMeatStore);
+const listStore = useListStore();
+const {items} = storeToRefs(listStore);
 const cartStore = useCartStore();
 const {products, uniqueList, emptyCart, totalCartPrice} = storeToRefs(cartStore);
 const {clearCart} = cartStore;
-
 
 const getItem = (name) => {
   const item = items.value.filter(element => element.name === name)[0];
@@ -20,7 +19,6 @@ const getItem = (name) => {
 </script>
 
 <template>
-  {{ products.length > 2 }}
   <div v-if="emptyCart" id="no-items">Your cart is empty</div>
   <div v-else id="cart">
     <span>Total price: {{ totalCartPrice }}€</span>&nbsp;&nbsp;&nbsp;&nbsp;<button @click="clearCart">Empty cart</button>
