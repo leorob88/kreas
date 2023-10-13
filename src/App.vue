@@ -10,7 +10,6 @@ fetchData();
 //rimangono da fare:
 //css
 //logo nella home
-//mettere selettore howMany anche nel carrello?
 </script>
 
 <template>

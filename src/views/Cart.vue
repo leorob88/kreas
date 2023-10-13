@@ -8,7 +8,7 @@ import Product from "../components/Product.vue";
 const listStore = useListStore();
 const {items} = storeToRefs(listStore);
 const cartStore = useCartStore();
-const {products, uniqueList, emptyCart, totalCartPrice} = storeToRefs(cartStore);
+const {uniqueList, emptyCart, totalCartPrice} = storeToRefs(cartStore);
 const {clearCart} = cartStore;
 
 const getItem = (name) => {
