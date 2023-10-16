@@ -16,7 +16,7 @@ const showList = computed(() => !loading.value && loaded.value);
     
     <p v-if="loading">Loading...</p>
 
-    <div v-if="showList" v-for="(item) in items">
+    <div id="home-list" v-if="showList" v-for="(item) in items">
       <Item :item="item" />
     </div>
 
@@ -29,8 +29,13 @@ const showList = computed(() => !loading.value && loaded.value);
 
 #home{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 380px;
+  font-size: 0.8em;
 }
 
+#home-list{
+  width: 64%;
+}
 
 </style>

@@ -20,17 +20,27 @@ const totalPrice = computed(() => props.item.price * quantity.value);
 <template class="product">
   <div>
     <router-link :to="'/details/' + props.item.name">
-      <img :src="props.item.image" class="cartList" />
+      <img :src="props.item.image" class="preview-cart" />
     </router-link>
-    {{ props.item.name }}: {{ quantity }} &nbsp;&nbsp;&nbsp; Total price: {{ totalPrice }}€
-    <button @click="removeToCart(props.item.name)">Remove</button>
+    <br />
+    {{ props.item.name }}: {{ quantity }}
+    <div class="product-summary">
+      Total price: {{ totalPrice }}€ &nbsp;&nbsp;&nbsp; <button class="cart-button" @click="removeToCart(props.item.name)">Remove</button>
+    </div>
   </div>
 </template>
 
 <style>
 
-.cartList{
-  width: 30%;
+.preview-cart{
+  width: 100%;
+}
+
+.product-summary{
+  font-size: 1em;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 @media (min-width: 576px) {

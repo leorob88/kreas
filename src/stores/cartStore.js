@@ -52,16 +52,28 @@ export const useCartStore = defineStore("cartStore", () => {
         return empty;
     })
 
-    const totalCartPrice = computed(() => {
-        let totalPrice = 0;
+    const discount = computed(() => {
+        let largePurchase = products.value.length > 2;
+        return largePurchase;
+    });
+
+    const tempCartPrice = computed(() => {
+        let tempPrice = 0;
         if (products.value.length > 0) {
             for (let i = 0; i < products.value.length; i++) {
-                totalPrice += products.value[i].price;
+                tempPrice += products.value[i].price;
             }
         }
-        if (products.value.length > 2) { totalPrice *= 0.9;}
+        return tempPrice.toFixed(2);
+    })
+
+    const totalCartPrice = computed(() => {
+        let totalPrice = tempCartPrice.value;
+        if (discount) {
+            totalPrice *= 0.9;
+        }
         return totalPrice.toFixed(2);
     })
 
-    return {products, addToCart, uniqueList, removeToCart, clearCart, getQuantityByName, emptyCart, totalCartPrice};
+    return {products, addToCart, uniqueList, removeToCart, clearCart, getQuantityByName, emptyCart, discount, tempCartPrice, totalCartPrice};
 })

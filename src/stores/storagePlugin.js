@@ -22,10 +22,8 @@ function createStateForStorage(storeId, state) {
 
 export function storagePlugin(context) {
     const state = getStateFromLocalStorage(context.store.$id);
-    console.log(context)
     context.store.$patch({ ...state});
     context.store.$subscribe(({storeId}, state) => {
-        console.log(storeId, state);
         localStorage.setItem(storeId, createStateForStorage(storeId, state));
     });
 }

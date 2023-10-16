@@ -12,7 +12,7 @@ const props = defineProps({
 <template class="product">
   <div>
     <router-link :to="'/details/' + props.item.name">
-      <img :src="props.item.image" class="preview"/>
+      <img :src="props.item.image" class="preview-home"/>
       {{ props.item.name }}
       <br />
       {{ props.item.price }}€
@@ -22,7 +22,7 @@ const props = defineProps({
 
 <style>
 
-.preview{
+.preview-home{
   width: 100%;
 }
 
