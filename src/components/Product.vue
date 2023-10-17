@@ -20,7 +20,7 @@ const totalPrice = computed(() => props.item.price * quantity.value);
 <template class="product">
   <div>
     <router-link :to="'/details/' + props.item.name">
-      <img :src="props.item.image" class="preview-cart" />
+      <img :src="props.item.image" class="preview-cart" :alt="props.item.name"/>
     </router-link>
     <br />
     {{ props.item.name }}: {{ quantity }}

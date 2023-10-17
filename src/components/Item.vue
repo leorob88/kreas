@@ -9,13 +9,15 @@ const props = defineProps({
 
 </script>
 
-<template class="product">
+<template>
   <div>
     <router-link :to="'/details/' + props.item.name">
-      <img :src="props.item.image" class="preview-home"/>
-      {{ props.item.name }}
-      <br />
-      {{ props.item.price }}€
+      <img :src="props.item.image" class="preview-home" :alt="props.item.name" />
+      <div class="item-summary">
+        {{ props.item.name }}
+        <br />
+        {{ props.item.price }}€
+      </div>
     </router-link>
   </div>
 </template>
@@ -24,6 +26,11 @@ const props = defineProps({
 
 .preview-home{
   width: 100%;
+}
+
+.item-summary{
+  font-size: 1em;
+  padding-bottom: 10px;
 }
 
 @media (min-width: 576px) {

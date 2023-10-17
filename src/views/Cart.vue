@@ -23,8 +23,8 @@ const buy = () => {
 </script>
 
 <template>
-  <div v-if="emptyCart" id="no-items">Your cart is empty</div>
-  <div v-else>
+  <div v-if="emptyCart" class="cart-page" id="no-items">Your cart is empty</div>
+  <div v-else class="cart-page">
     <div id="summary">
       <div>
         <div v-if="discount">
@@ -46,6 +46,11 @@ const buy = () => {
 
 <style>
 
+.cart-page{
+  background-color: rgb(200, 200, 200);
+  margin: -8px;
+}
+
 #summary{
   display: flex;
   justify-content: space-between;
@@ -58,7 +63,6 @@ const buy = () => {
 #cart{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding-left: 414px;
   font-size: 0.8em;
 }
 

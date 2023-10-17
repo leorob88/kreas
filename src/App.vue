@@ -33,8 +33,8 @@ fetchData();
 }
 
 body{
-  background-color: rgb(23, 23, 23);
-  color: rgb(238, 238, 238);
+  background-color: brown;
+  color: rgb(23, 23, 23);
 }
 
 a{
@@ -53,10 +53,6 @@ ul{
   justify-content: space-around;
   text-decoration: none;
   list-style-type: none;
-}
-
-.product{
-  padding: 5%;
 }
 
 @media (min-width: 576px) {

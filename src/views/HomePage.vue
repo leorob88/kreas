@@ -28,9 +28,10 @@ const showList = computed(() => !loading.value && loaded.value);
 <style>
 
 #home{
+  background-color: rgb(200, 200, 200);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding-left: 380px;
+  margin:-8px;
   font-size: 0.8em;
 }
 
