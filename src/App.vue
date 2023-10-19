@@ -7,12 +7,11 @@ const {fetchData} = listStore;
 
 fetchData();
 
-//rimangono da fare:
-//css
-//logo nella home
+//fatto il css per 320
 </script>
 
 <template>
+  <img src="./assets/kreas logo.png" alt="logo" id="logo">
   <div id="main">
     <nav>
       <ul>
@@ -20,7 +19,6 @@ fetchData();
         <li><router-link to="/cart">Cart</router-link></li>
       </ul>
     </nav>
-    <br />
     <router-view :key="$route.path" />
   </div>
 </template>
@@ -29,30 +27,48 @@ fetchData();
 
 * {
   font-family: "Quicksand", "Verdana", "Arial", serif;
-  font-size: 0.94em;
+  font-size: 1em;
 }
 
 body{
-  background-color: brown;
+  background-color: rgb(130, 20, 20);
   color: rgb(23, 23, 23);
+}
+
+#logo{
+  position:absolute;
+  top: 0;
+  left: -8px;
+  height: 5.5%;
 }
 
 a{
   text-decoration: none;
-  color: rgb(0, 189, 126);
+  color: rgb(40, 160, 220);
 }
 
 #main{
   width: 100%;
 }
 
+nav{
+  margin-top: -8px;
+}
+
 ul{
   padding:0;
-  width: 100%;
+  padding-left: 60px;
+  padding-right: 60px;
   display: flex;
   justify-content: space-around;
   text-decoration: none;
   list-style-type: none;
+}
+
+button{
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 3px;
 }
 
 @media (min-width: 576px) {
@@ -91,6 +107,10 @@ ul{
 @media (min-width: 3840px) {
   * {
     font-size: 1.2em;
+  }
+
+  #logo{
+    height: 10%;
   }
 }
 

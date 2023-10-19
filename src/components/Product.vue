@@ -25,7 +25,7 @@ const totalPrice = computed(() => props.item.price * quantity.value);
     <br />
     {{ props.item.name }}: {{ quantity }}
     <div class="product-summary">
-      Total price: {{ totalPrice }}€ &nbsp;&nbsp;&nbsp; <button class="cart-button" @click="removeToCart(props.item.name)">Remove</button>
+      Total price: {{ totalPrice }}€ &nbsp;&nbsp;&nbsp; <button class="product-button" @click="removeToCart(props.item.name)">Remove</button>
     </div>
   </div>
 </template>

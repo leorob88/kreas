@@ -28,12 +28,14 @@ const buy = () => {
     <div id="summary">
       <div>
         <div v-if="discount">
-          <span>Total price: </span><span :style="{'text-decoration': 'line-through', 'color': 'grey'}">{{ tempCartPrice }}€</span>&nbsp;<span>{{ totalCartPrice }}€  (your total bill gets a 10% discount for purchasing at least 3 products)</span>
+          <span>Total price: </span><span :style="{'text-decoration': 'line-through', 'color': 'grey'}">{{ tempCartPrice }}€</span>&nbsp;<span>{{ totalCartPrice }}€
+            <br />
+            (your bill gets a 10% discount for purchasing at least 3 products)</span>
         </div>
         <span v-else>Total price: {{ totalCartPrice }}€</span>
       </div>
       <div>
-        <button class="cart-button" @click="clearCart">Empty cart</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class="cart-button" @click="buy()">Buy products</button>
+        <button class="cart-button" @click="clearCart">Clear cart</button><button class="cart-button" @click="buy()">Proceed</button>
       </div>
     </div>
     <div id="cart">
@@ -49,6 +51,7 @@ const buy = () => {
 .cart-page{
   background-color: rgb(200, 200, 200);
   margin: -8px;
+  padding-top: 20px;
 }
 
 #summary{
@@ -62,7 +65,8 @@ const buy = () => {
 
 #cart{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
   font-size: 0.8em;
 }
 
@@ -70,8 +74,24 @@ const buy = () => {
   width: 63%;
 }
 
-.cart-button{
+.cart-button, .product-button{
   font-size: 0.9em;
+}
+
+.cart-button{
+  width: 80px;
+  margin: 0;
+  padding: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+@media (min-width: 3840px) {
+
+  #cart{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 </style>

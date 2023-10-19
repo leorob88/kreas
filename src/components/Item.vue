@@ -30,7 +30,13 @@ const props = defineProps({
 
 .item-summary{
   font-size: 1em;
+  text-align: center;
   padding-bottom: 10px;
+  color: black;
+}
+
+.item-summary:hover{
+  color: rgb(228, 113, 5);
 }
 
 @media (min-width: 576px) {
