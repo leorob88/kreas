@@ -1,9 +1,15 @@
 <script setup>
 
 import { storeToRefs } from "pinia";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useListStore } from "../stores/listStore";
 import Item from "../components/Item.vue"
+
+const emit = defineEmits(["height"]);
+
+onMounted(() => {
+  emit("height");
+})
 
 const listStore = useListStore();
 const {items, loading, loaded, error} = storeToRefs(listStore);
@@ -35,6 +41,8 @@ const showList = computed(() => !loading.value && loaded.value);
   justify-items: center;
   margin:-8px;
   font-size: 0.8em;
+  position: absolute;
+  top: 50;
 }
 
 .home-list{

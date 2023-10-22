@@ -1,5 +1,6 @@
 <script setup>
 
+import { ref } from "vue";
 import { useListStore } from "./stores/listStore";
 
 const listStore = useListStore();
@@ -7,11 +8,21 @@ const {fetchData} = listStore;
 
 fetchData();
 
+const homeTop = ref("");
+const fixLogo = () => {
+  homeTop.value = `${document.getElementById("home").getBoundingClientRect().top}px`;
+  console.log(homeTop.value)
+  document.getElementById("logo").style.height = homeTop || detailTop || cart1Top || cart2Top;
+}
+
 //fatto il css per 320
+//fare fixLogo anche per le altre pagine
+//per fare il resto del css aggiungere anche il listener window resize per il logo
+
 </script>
 
 <template>
-  <img src="./assets/kreas logo.png" alt="logo" id="logo">
+  <img src="./assets/kreas logo.png" alt="logo" id="logo" :style="{height : homeTop}">
   <div id="main">
     <nav>
       <ul>
@@ -19,7 +30,7 @@ fetchData();
         <li><router-link to="/cart">Cart</router-link></li>
       </ul>
     </nav>
-    <router-view :key="$route.path" />
+    <router-view @height="fixLogo()" :key="$route.path" />
   </div>
 </template>
 
@@ -39,7 +50,6 @@ body{
   position:absolute;
   top: 0;
   left: -8px;
-  height: 5.5%;
 }
 
 a{
