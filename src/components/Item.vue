@@ -16,7 +16,7 @@ const props = defineProps({
       <div class="item-summary">
         {{ props.item.name }}
         <br />
-        {{ props.item.price }}€
+        {{ props.item.price.toFixed(2) }}€
       </div>
     </router-link>
   </div>

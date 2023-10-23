@@ -8,6 +8,7 @@ const {fetchData} = listStore;
 
 fetchData();
 
+//graphic fixes
 const top = ref("");
 const pages = ref(["home", "detailed", "cart-page"]);
 const page = ref("");

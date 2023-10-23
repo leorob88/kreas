@@ -1,6 +1,6 @@
 <script setup>
 
-import { onMounted } from "vue"; 
+import { ref, onMounted, onBeforeUnmount, onUnmounted } from "vue"; 
 import { storeToRefs } from "pinia";
 import { useListStore } from "../stores/listStore";
 import { useCartStore } from "../stores/cartStore";
@@ -27,10 +27,46 @@ const buy = () => {
   clearCart();
 }
 
+//graphic fixes
+const height = ref("");
+const page = ref("");
+
+const fixSize = () => {
+    console.log(page.value.style.paddingTop)
+    height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
+    console.log(page)
+}
+
+const observer = ref(null);
+const addObserver = () => {
+    if (!page.value.id) {
+        window.setTimeout(addObserver, 500);
+    } else {
+        observer.value = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation) {
+                    let properties = window.getComputedStyle(page.value);
+                    height.value = `${window.innerHeight - properties.getPropertyValue('top')}px`;
+                }
+            })
+        })
+        observer.value.observe(page.value, { attributes: true });
+    }
+}
+
+onMounted(() => {
+    page.value = document.getElementById("cart-page");
+    fixSize();
+    window.addEventListener("resize", fixSize);
+    addObserver();
+})
+onBeforeUnmount(() => { observer.value.disconnect(); })
+onUnmounted(() => { window.removeEventListener("resize", fixSize); })
+
 </script>
 
 <template>
-  <div id="cart-page">
+  <div id="cart-page" :style="{minHeight : height}">
     <div v-if="emptyCart" id="no-items">Your cart is empty</div>
     <div v-else>
       <div id="summary">
@@ -44,8 +80,9 @@ const buy = () => {
           <span v-else>Total price: {{ totalCartPrice }}€</span>
         </div>
         <div>
-          <button class="cart-button" @click="clearCart">Clear cart</button><button class="cart-button"
-            @click="buy()">Proceed</button>
+          <button class="cart-button" @click="clearCart">Clear cart</button>
+          <br />
+          <button class="cart-button" @click="buy()">Proceed</button>
         </div>
       </div>
       <div id="cart">
@@ -62,7 +99,7 @@ const buy = () => {
 #cart-page{
   background-color: rgb(200, 200, 200);
   margin: -8px;
-  padding-top: 20px;
+  min-height: 91.5vh;
 }
 
 #summary{
@@ -70,8 +107,15 @@ const buy = () => {
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
-  font-size: 0.8em;
+  padding-top: 20px;
   padding-bottom: 10px;
+  font-size: 0.8em;
+}
+
+#no-items{
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 0.8em;
 }
 
 #cart{
