@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted, onBeforeUnmount } from "vue";
 import { useListStore } from "./stores/listStore";
 
 const listStore = useListStore();
@@ -8,21 +8,51 @@ const {fetchData} = listStore;
 
 fetchData();
 
-const homeTop = ref("");
+const top = ref("");
+const pages = ref(["home", "detailed", "cart-page"]);
+const page = ref("");
+
 const fixLogo = () => {
-  homeTop.value = `${document.getElementById("home").getBoundingClientRect().top}px`;
-  console.log(homeTop.value)
-  document.getElementById("logo").style.height = homeTop || detailTop || cart1Top || cart2Top;
+  for (let i = 0; i < pages.value.length; i++) {
+    if (document.getElementById(pages.value[i])) {
+      page.value = document.getElementById(pages.value[i]);
+      break;
+    }
+  }
+  top.value = `${page.value.getBoundingClientRect().top}px`;
+  console.log(page.value.id)
 }
 
+const observer = ref(null);
+const addObserver = () => {
+  if (!page.value.id) {
+    window.setTimeout(addObserver, 500);
+  } else {
+    observer.value = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation) {
+          let properties = window.getComputedStyle(page.value);
+          top.value = `${properties.getPropertyValue('top')}px`;
+        }
+      })
+    })
+    observer.value.observe(page.value, { attributes: true });
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("resize", fixLogo);
+  addObserver();
+})
+onBeforeUnmount(() => {observer.value.disconnect();})
+onUnmounted(() => {window.removeEventListener("resize", fixLogo);})
+
 //fatto il css per 320
-//fare fixLogo anche per le altre pagine
-//per fare il resto del css aggiungere anche il listener window resize per il logo
 
 </script>
 
 <template>
-  <img src="./assets/kreas logo.png" alt="logo" id="logo" :style="{height : homeTop}">
+  <img src="./assets/kreas logo.png" alt="logo" id="logo" :style="{height : top}">
   <div id="main">
     <nav>
       <ul>

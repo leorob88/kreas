@@ -1,9 +1,15 @@
 <script setup>
 
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useListStore } from "../stores/listStore";
 import { useCartStore } from "../stores/cartStore";
+
+const emit = defineEmits(["height"]);
+
+onMounted(() => {
+  emit("height");
+})
 
 const listStore = useListStore();
 const cartStore = useCartStore();

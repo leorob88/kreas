@@ -1,9 +1,16 @@
 <script setup>
 
+import { onMounted } from "vue"; 
 import { storeToRefs } from "pinia";
 import { useListStore } from "../stores/listStore";
 import { useCartStore } from "../stores/cartStore";
 import Product from "../components/Product.vue";
+
+const emit = defineEmits(["height"]);
+
+onMounted(() => {
+  emit("height");
+})
 
 const listStore = useListStore();
 const {items} = storeToRefs(listStore);
@@ -23,24 +30,28 @@ const buy = () => {
 </script>
 
 <template>
-  <div v-if="emptyCart" class="cart-page" id="no-items">Your cart is empty</div>
-  <div v-else class="cart-page">
-    <div id="summary">
-      <div>
-        <div v-if="discount">
-          <span>Total price: </span><span :style="{'text-decoration': 'line-through', 'color': 'grey'}">{{ tempCartPrice }}€</span>&nbsp;<span>{{ totalCartPrice }}€
-            <br />
-            (your bill gets a 10% discount for purchasing at least 3 products)</span>
+  <div id="cart-page">
+    <div v-if="emptyCart" id="no-items">Your cart is empty</div>
+    <div v-else>
+      <div id="summary">
+        <div>
+          <div v-if="discount">
+            <span>Total price: </span><span :style="{ 'text-decoration': 'line-through', 'color': 'grey' }">{{ tempCartPrice
+            }}€</span>&nbsp;<span>{{ totalCartPrice }}€
+              <br />
+              (your bill gets a 10% discount for purchasing at least 3 products)</span>
+          </div>
+          <span v-else>Total price: {{ totalCartPrice }}€</span>
         </div>
-        <span v-else>Total price: {{ totalCartPrice }}€</span>
+        <div>
+          <button class="cart-button" @click="clearCart">Clear cart</button><button class="cart-button"
+            @click="buy()">Proceed</button>
+        </div>
       </div>
-      <div>
-        <button class="cart-button" @click="clearCart">Clear cart</button><button class="cart-button" @click="buy()">Proceed</button>
-      </div>
-    </div>
-    <div id="cart">
-      <div id="cart-list" v-for="(product) in uniqueList">
-        <Product :item="getItem(product.name)" />
+      <div id="cart">
+        <div id="cart-list" v-for="(product) in uniqueList">
+          <Product :item="getItem(product.name)" />
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +59,7 @@ const buy = () => {
 
 <style>
 
-.cart-page{
+#cart-page{
   background-color: rgb(200, 200, 200);
   margin: -8px;
   padding-top: 20px;
