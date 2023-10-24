@@ -32,9 +32,7 @@ const height = ref("");
 const page = ref("");
 
 const fixSize = () => {
-    console.log(page.value.style.paddingTop)
-    height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
-    console.log(page)
+  height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
 }
 
 const observer = ref(null);
@@ -60,8 +58,12 @@ onMounted(() => {
     window.addEventListener("resize", fixSize);
     addObserver();
 })
-onBeforeUnmount(() => { observer.value.disconnect(); })
-onUnmounted(() => { window.removeEventListener("resize", fixSize); })
+onBeforeUnmount(() => {
+  observer.value.disconnect();
+})
+onUnmounted(() => {
+  window.removeEventListener("resize", fixSize);
+})
 
 </script>
 
@@ -72,10 +74,9 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
       <div id="summary">
         <div>
           <div v-if="discount">
-            <span>Total price: </span><span :style="{ 'text-decoration': 'line-through', 'color': 'grey' }">{{ tempCartPrice
-            }}€</span>&nbsp;<span>{{ totalCartPrice }}€
+            <span>Total price: </span><span :style="{ 'text-decoration': 'line-through', 'color': 'grey' }">{{ tempCartPrice }}€</span>&nbsp;<span>{{ totalCartPrice }}€
               <br />
-              (your bill gets a 10% discount for purchasing at least 3 products)</span>
+              (you get a 10% discount for purchasing at least 3 products)</span>
           </div>
           <span v-else>Total price: {{ totalCartPrice }}€</span>
         </div>
@@ -99,7 +100,7 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
 #cart-page{
   background-color: rgb(200, 200, 200);
   margin: -8px;
-  min-height: 91.5vh;
+  font-size: 0.9em;
 }
 
 #summary{
@@ -109,40 +110,57 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 10px;
-  font-size: 0.8em;
 }
 
 #no-items{
   padding-top: 20px;
   padding-left: 20px;
-  font-size: 0.8em;
 }
 
 #cart{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   justify-items: center;
-  font-size: 0.8em;
 }
 
 #cart-list{
   width: 63%;
 }
 
-.cart-button, .product-button{
-  font-size: 0.9em;
-}
-
 .cart-button{
-  width: 80px;
+  font-size: 0.9em;
+  width: 65px;
   margin: 0;
-  padding: 0;
+  padding: 1px;
   margin-top: 4px;
   margin-bottom: 4px;
 }
 
-@media (min-width: 3840px) {
+@media (min-width: 576px) {
+  #summary{
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 34px;
+    padding-bottom: 17px;
+  }
 
+  #no-items{
+    font-size: 1.2em;
+    padding-top: 34px;
+    padding-left: 32px;
+  }
+
+  .cart-button{
+    font-size: 1em;
+    width: 130px;
+    margin: 0;
+    padding: 2px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+}
+
+@media (min-width: 3840px) {
   #cart{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -29,7 +29,7 @@ const props = defineProps({
 }
 
 .item-summary{
-  font-size: 1em;
+  font-size: 0.9em;
   text-align: center;
   padding-bottom: 10px;
   color: black;

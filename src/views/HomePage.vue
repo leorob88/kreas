@@ -37,17 +37,21 @@ const showList = computed(() => !loading.value && loaded.value);
   background-color: rgb(200, 200, 200);
   width: 100%;
   padding-top: 20px;
+  position: absolute;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   justify-items: center;
   margin:-8px;
-  font-size: 0.8em;
-  position: absolute;
-  top: 50;
 }
 
 .home-list{
   width: 80%;
+}
+
+@media (min-width: 576px) {
+  #home{
+    padding-top: 34px;
+  }
 }
 
 @media (min-width: 3840px) {
@@ -55,7 +59,6 @@ const showList = computed(() => !loading.value && loaded.value);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin:-8px;
-    font-size: 0.8em;
   }
 
   .home-list{

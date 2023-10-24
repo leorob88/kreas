@@ -27,9 +27,7 @@ const height = ref("");
 const page = ref("");
 
 const fixSize = () => {
-    console.log(page.value.style.paddingTop)
     height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
-    console.log(page)
 }
 
 const observer = ref(null);
@@ -53,10 +51,15 @@ onMounted(() => {
     page.value = document.getElementById("detailed");
     fixSize();
     window.addEventListener("resize", fixSize);
+    window.addEventListener("scroll", fixSize);
     addObserver();
 })
-onBeforeUnmount(() => { observer.value.disconnect(); })
-onUnmounted(() => { window.removeEventListener("resize", fixSize); })
+onBeforeUnmount(() => {
+    observer.value.disconnect();
+})
+onUnmounted(() => {
+    window.removeEventListener("resize", fixSize);  window.removeEventListener("scroll", fixSize);
+})
 
 </script>
 
@@ -71,10 +74,10 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
             Price: {{ item.price.toFixed(2) }}€
             <div id="add">
                 <button @click="howManyVisible = true">Add to cart</button>
-                <span v-show="howManyVisible">
-                    <span id="selection">
+                <span id="selection" v-show="howManyVisible">
+                    <span id="selectors">
                         <button @click="howMany--" :disabled="howMany < 1">-</button>
-                        <span class="quantity">{{ howMany }}</span>
+                        <div class="quantity">{{ howMany }}</div>
                         <button @click="howMany++" :disabled="howMany > 49">+</button>
                     </span>
                     <span id="confirm">
@@ -99,11 +102,6 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
   margin:-8px;
 }
 
-#detailed button:disabled {
-    background-color: rgb(150, 150, 150);
-    border: solid grey 1px;
-}
-
 #image{
     padding-top: 20px;
     display: flex;
@@ -115,9 +113,18 @@ onUnmounted(() => { window.removeEventListener("resize", fixSize); })
 }
 
 p{
-    padding-left: 4px;
-    padding-right: 4px;
-    font-size: 0.8em;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9em;
+}
+
+#detailed button{
+    height: 23px;
+}
+
+#detailed button:disabled{
+    background-color: rgb(150, 150, 150);
+    border: solid grey 1px;
 }
 
 #add{
@@ -125,19 +132,22 @@ p{
 }
 
 #selection{
-    padding-left: 15px;
-    padding-right: 15px;
+    display: flex;
 }
 
-#selection button, #confirm button{
+#selectors{
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+}
+
+#selectors button, #confirm button{
     margin-left: 2px;
     margin-right: 2px;
 }
 
-#selection button {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 20px;
+#selectors button{
+    width: 24px;
     text-align: center;
 }
 
@@ -147,14 +157,48 @@ p{
     margin: 0;
     margin-left: 2px;
     margin-right: 2px;
-    padding-top: 1px;
-    padding-right: 1px;
+    padding-top: 2px;
     border: solid black 1px;
     border-radius: 3px;
-    display: inline-block;
-    width: 18px;
-    height: 17px;
+    width: 23px;
     text-align: center;
+}
+
+@media (min-width: 576px) {
+  #image{
+    padding-top: 34px;
+  }
+
+  p{
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 1.1em;
+  }
+
+  #detailed button{
+    height: 42px;
+  }
+
+  #selectors{
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  #selectors button, #confirm button{
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  #selectors button{
+    width: 42px;
+  }
+
+  .quantity{
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-top: 2px;
+    width: 41px;
+  }
 }
 
 @media (min-width: 3840px) {

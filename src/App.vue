@@ -20,8 +20,7 @@ const fixLogo = () => {
       break;
     }
   }
-  top.value = `${page.value.getBoundingClientRect().top}px`;
-  console.log(page.value.id)
+  top.value = `${page.value.offsetTop}px`;
 }
 
 const observer = ref(null);
@@ -45,10 +44,16 @@ onMounted(() => {
   window.addEventListener("resize", fixLogo);
   addObserver();
 })
-onBeforeUnmount(() => {observer.value.disconnect();})
-onUnmounted(() => {window.removeEventListener("resize", fixLogo);})
+onBeforeUnmount(() => {
+  observer.value.disconnect();
+})
+onUnmounted(() => {
+  window.removeEventListener("resize", fixLogo);
+})
 
-//fatto il css per 320
+//fatto il css per:
+//320
+//576
 
 </script>
 
@@ -69,7 +74,6 @@ onUnmounted(() => {window.removeEventListener("resize", fixLogo);})
 
 * {
   font-family: "Quicksand", "Verdana", "Arial", serif;
-  font-size: 1em;
 }
 
 body{
@@ -114,7 +118,13 @@ button{
 
 @media (min-width: 576px) {
   * {
-    font-size: 1.04em;
+    font-size: 1.06em;
+  }
+
+ul{
+    padding:0;
+    padding-left: 100px;
+    padding-right: 100px;
   }
 }
 
