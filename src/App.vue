@@ -8,7 +8,7 @@ const {fetchData} = listStore;
 
 fetchData();
 
-//graphic fixes
+//graphic fixes needed to make the logo independent of the navbar container
 const top = ref("");
 const pages = ref(["home", "detailed", "cart-page"]);
 const page = ref("");
@@ -78,7 +78,6 @@ onUnmounted(() => {
 
 body{
   background-color: rgb(130, 20, 20);
-  color: rgb(23, 23, 23);
 }
 
 #logo{
@@ -90,6 +89,10 @@ body{
 a{
   text-decoration: none;
   color: rgb(40, 160, 220);
+}
+
+a:hover{
+  color: rgb(97, 194, 243);
 }
 
 #main{
@@ -121,8 +124,7 @@ button{
     font-size: 1.06em;
   }
 
-ul{
-    padding:0;
+  ul{
     padding-left: 100px;
     padding-right: 100px;
   }
@@ -131,6 +133,16 @@ ul{
 @media (min-width: 768px) {
   * {
     font-size: 1.09em;
+  }
+
+  ul{
+    padding-left: 140px;
+    padding-right: 140px;
+  }
+
+  button{
+    border: solid black 2px;
+    border-radius: 6px;
   }
 }
 

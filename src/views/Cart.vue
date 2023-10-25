@@ -27,7 +27,7 @@ const buy = () => {
   clearCart();
 }
 
-//graphic fixes
+//graphic fixes needed to avoid the container position: fixed
 const height = ref("");
 const page = ref("");
 
@@ -117,6 +117,15 @@ onUnmounted(() => {
   padding-left: 20px;
 }
 
+.cart-button{
+  font-size: 0.9em;
+  width: 65px;
+  margin: 0;
+  padding: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
 #cart{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -125,15 +134,6 @@ onUnmounted(() => {
 
 #cart-list{
   width: 63%;
-}
-
-.cart-button{
-  font-size: 0.9em;
-  width: 65px;
-  margin: 0;
-  padding: 1px;
-  margin-top: 4px;
-  margin-bottom: 4px;
 }
 
 @media (min-width: 576px) {
@@ -157,6 +157,44 @@ onUnmounted(() => {
     padding: 2px;
     margin-top: 7px;
     margin-bottom: 7px;
+  }
+}
+
+@media (min-width: 768px) {
+  #cart-page{
+    font-size: 0.86em;
+  }
+
+  #summary{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 25px;
+    padding-bottom: 24px;
+  }
+
+  #no-items{
+    font-size: 1.2em;
+    padding-top: 34px;
+    padding-left: 32px;
+  }
+
+  .cart-button{
+    font-size: 1em;
+    width: 130px;
+    margin: 0;
+    padding: 2px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+
+  #cart{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  #cart-list{
+    width: 80%;
   }
 }
 

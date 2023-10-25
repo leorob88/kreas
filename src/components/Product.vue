@@ -25,7 +25,7 @@ const totalPrice = computed(() => props.item.price * quantity.value).value.toFix
     <br />
     {{ props.item.name }}: {{ quantity }}
     <div class="product-summary">
-      Total price: {{ totalPrice }}€
+      Total: {{ totalPrice }}€
       <button class="product-button" @click="removeToCart(props.item.name)">Remove</button>
     </div>
   </div>
@@ -46,7 +46,8 @@ const totalPrice = computed(() => props.item.price * quantity.value).value.toFix
 
 .product-button{
   font-size: 0.9em;
-  width: 50px;
+  padding: 1px;
+  width: 60px;
 }
 
 @media (min-width: 576px) {
@@ -57,7 +58,13 @@ const totalPrice = computed(() => props.item.price * quantity.value).value.toFix
 }
 
 @media (min-width: 768px) {
-  
+  .product-summary{
+    padding-bottom: 15px;
+  }
+
+  .product-button{
+    width: 120px;
+  }
 }
 
 @media (min-width: 992px) {

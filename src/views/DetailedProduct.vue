@@ -22,7 +22,7 @@ const item = items.value.filter(element => element.name === decodeURI(window.loc
 let howMany = ref(0);
 const howManyVisible = ref(false);
 
-//graphic fixes
+//graphic fixes needed to avoid the container position: fixed
 const height = ref("");
 const page = ref("");
 
@@ -64,13 +64,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div id="detailed" :style="{minHeight : height}">
-        <div id="image">
-            <img :src="[item.image]" />
+    <div id="detailed" :style="{ minHeight: height }">
+        <div id="part-1">
+            <div id="image">
+                <img :src="[item.image]" />
+            </div>
+            <div id="text">
+                <p>{{ item.name }}</p>
+                <p>{{ item.description }}</p>
+            </div>
         </div>
-        <p>{{ item.name }}</p>
-        <p>{{ item.description }}</p>
-        <p>
+        <div id="part-2">
+            <p>
             Price: {{ item.price.toFixed(2) }}€
             <div id="add">
                 <button @click="howManyVisible = true">Add to cart</button>
@@ -78,7 +83,7 @@ onUnmounted(() => {
                     <span id="selectors">
                         <button @click="howMany--" :disabled="howMany < 1">-</button>
                         <div class="quantity">{{ howMany }}</div>
-                        <button @click="howMany++" :disabled="howMany > 49">+</button>
+                        <button @click="howMany++" :disabled="(getQuantityByName(item.name) + howMany) > 49">+</button>
                     </span>
                     <span id="confirm">
                         <button @click="addToCart(item, howMany); howManyVisible = false; howMany = 0" :disabled="howMany < 1">Ok</button>
@@ -86,12 +91,14 @@ onUnmounted(() => {
                     </span>
                 </span>
             </div>
-        </p>
-        <p>Currently added: {{ getQuantityByName(item.name) }} (max 50)
-            <div>
-                <button v-if="getQuantityByName(item.name) > 0" @click="removeToCart(item.name)">Remove from cart</button>
-            </div>
-        </p>
+            </p>
+            <p>
+                Currently added: {{ getQuantityByName(item.name) }} (max 50)
+                <div>
+                    <button v-if="getQuantityByName(item.name) > 0" @click="removeToCart(item.name)">Remove from cart</button>
+                </div>
+            </p>
+        </div>
     </div>
 </template>
 
@@ -169,14 +176,19 @@ p{
     padding-top: 34px;
   }
 
+  #image img{
+    width: 70%;
+  }
+
   p{
     padding-left: 18px;
     padding-right: 18px;
-    font-size: 1.1em;
+    font-size: 1.01em;
   }
 
   #detailed button{
-    height: 42px;
+    font-size: 0.9em;
+    height: 36px;
   }
 
   #selectors{
@@ -190,14 +202,82 @@ p{
   }
 
   #selectors button{
-    width: 42px;
+    width: 36px;
   }
 
   .quantity{
+    font-size: 0.9em;
     margin-left: 3px;
     margin-right: 3px;
-    padding-top: 2px;
-    width: 41px;
+    padding-top: 3px;
+    width: 38px;
+  }
+}
+
+@media (min-width: 768px) {
+  #part-1{
+    display: flex;
+    justify-content:space-evenly;
+  }
+  #image{
+    padding-top: 25px;
+    display: block;
+    width: 40%;
+  }
+
+  #image img{
+    width: 100%;
+  }
+
+  #text{
+    width: 50%;
+  }
+
+  p{
+    font-size: 0.98em;
+  }
+
+  #part-1 p{
+    margin-top: 18px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #part-2 p{
+    margin-top: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #detailed button{
+    height: 48px;
+  }
+
+  #detailed button:disabled{
+    border: solid grey 2px;
+  }
+
+  #selectors{
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  #selectors button, #confirm button{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #selectors button{
+    width: 48px;
+  }
+
+  .quantity{
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 4px;
+    border: solid black 2px;
+    border-radius: 6px;
+    width: 50px;
   }
 }
 

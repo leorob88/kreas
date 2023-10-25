@@ -39,12 +39,10 @@ const props = defineProps({
   color: rgb(228, 113, 5);
 }
 
-@media (min-width: 576px) {
-  
-}
-
 @media (min-width: 768px) {
-  
+  .item-summary{
+    padding-bottom: 20px;
+  }
 }
 
 @media (min-width: 992px) {
