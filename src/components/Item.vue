@@ -45,10 +45,6 @@ const props = defineProps({
   }
 }
 
-@media (min-width: 992px) {
-  
-}
-
 @media (min-width: 1280px) {
   
 }

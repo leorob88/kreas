@@ -173,9 +173,9 @@ onUnmounted(() => {
   }
 
   #no-items{
-    font-size: 1.2em;
-    padding-top: 34px;
-    padding-left: 32px;
+    font-size: 1.55em;
+    padding-top: 25px;
+    padding-left: 40px;
   }
 
   .cart-button{
@@ -195,6 +195,35 @@ onUnmounted(() => {
 
   #cart-list{
     width: 80%;
+  }
+}
+
+@media (min-width: 992px) {
+  #cart-page{
+    font-size: 0.82em;
+  }
+
+  #summary{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 35px;
+    padding-bottom: 24px;
+  }
+
+  #no-items{
+    font-size: 1.95em;
+    padding-top: 35px;
+    padding-left: 40px;
+  }
+
+  .cart-button{
+    font-size: 1.32em;
+    width: 220px;
+  }
+  
+  #cart-list{
+    font-size: 1.25em;
+    width: 88%;
   }
 }
 

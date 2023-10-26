@@ -62,6 +62,12 @@ const showList = computed(() => !loading.value && loaded.value);
   }
 }
 
+@media (min-width: 992px) {
+  #home{
+    padding-top: 35px;
+  }
+}
+
 @media (min-width: 3840px) {
   #home{
     display: grid;

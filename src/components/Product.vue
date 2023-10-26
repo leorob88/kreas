@@ -68,7 +68,9 @@ const totalPrice = computed(() => props.item.price * quantity.value).value.toFix
 }
 
 @media (min-width: 992px) {
-  
+  .product-button{
+    width: 160px;
+  }  
 }
 
 @media (min-width: 1280px) {

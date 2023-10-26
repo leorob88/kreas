@@ -150,6 +150,15 @@ button{
   * {
     font-size: 1.14em;
   }
+
+  #logo{
+    left: -20px;
+  }
+
+  ul{
+    padding-left: 200px;
+    padding-right: 200px;
+  }
 }
 
 @media (min-width: 1280px) {
