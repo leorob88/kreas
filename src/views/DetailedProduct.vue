@@ -27,7 +27,8 @@ const height = ref("");
 const page = ref("");
 
 const fixSize = () => {
-    height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
+    height.value = window.innerHeight - page.value.getBoundingClientRect().top;
+    if (screen.width >= 1600) {height.value += 1}
 }
 
 const observer = ref(null);
@@ -39,7 +40,8 @@ const addObserver = () => {
             mutations.forEach((mutation) => {
                 if (mutation) {
                     let properties = window.getComputedStyle(page.value);
-                    height.value = `${window.innerHeight - properties.getPropertyValue('top')}px`;
+                    height.value = window.innerHeight - properties.getPropertyValue('top');
+                    if (screen.width === 1600) {height.value += 1}
                 }
             })
         })
@@ -58,13 +60,14 @@ onBeforeUnmount(() => {
     observer.value.disconnect();
 })
 onUnmounted(() => {
-    window.removeEventListener("resize", fixSize);  window.removeEventListener("scroll", fixSize);
+    window.removeEventListener("resize", fixSize);
+    window.removeEventListener("scroll", fixSize);
 })
 
 </script>
 
 <template>
-    <div id="detailed" :style="{ minHeight: height }">
+    <div id="detailed" :style="{ minHeight: `${height}px`}">
         <div id="part-1">
             <div id="image">
                 <img :src="[item.image]" />
@@ -87,7 +90,7 @@ onUnmounted(() => {
                     </span>
                     <span id="confirm">
                         <button @click="addToCart(item, howMany); howManyVisible = false; howMany = 0" :disabled="howMany < 1">Ok</button>
-                        <button @click="howManyVisible = false; howMany = 0">Cancel</button>
+                        <button @click="howManyVisible = false; howMany = 50">Cancel</button>
                     </span>
                 </span>
             </div>

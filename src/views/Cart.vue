@@ -32,7 +32,8 @@ const height = ref("");
 const page = ref("");
 
 const fixSize = () => {
-  height.value = `${window.innerHeight - page.value.getBoundingClientRect().top}px`;
+  height.value = window.innerHeight - page.value.getBoundingClientRect().top;
+  if (screen.width >= 1600) {height.value += 1}
 }
 
 const observer = ref(null);
@@ -44,7 +45,8 @@ const addObserver = () => {
             mutations.forEach((mutation) => {
                 if (mutation) {
                     let properties = window.getComputedStyle(page.value);
-                    height.value = `${window.innerHeight - properties.getPropertyValue('top')}px`;
+                    height.value = window.innerHeight - properties.getPropertyValue('top');
+                    if (screen.width === 1600) {height.value += 1}
                 }
             })
         })
@@ -56,6 +58,7 @@ onMounted(() => {
     page.value = document.getElementById("cart-page");
     fixSize();
     window.addEventListener("resize", fixSize);
+    window.addEventListener("scroll", fixSize);
     addObserver();
 })
 onBeforeUnmount(() => {
@@ -63,12 +66,13 @@ onBeforeUnmount(() => {
 })
 onUnmounted(() => {
   window.removeEventListener("resize", fixSize);
+  window.removeEventListener("scroll", fixSize);
 })
 
 </script>
 
 <template>
-  <div id="cart-page" :style="{minHeight : height}">
+  <div id="cart-page" :style="{minHeight : `${height}px`}">
     <div v-if="emptyCart" id="no-items">Your cart is empty</div>
     <div v-else>
       <div id="summary">
@@ -257,6 +261,13 @@ onUnmounted(() => {
   #cart-list{
     font-size: 1.1em;
     width: 88%;
+  }
+}
+
+@media (min-width: 1600px) {
+  #cart{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
