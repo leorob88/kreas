@@ -163,7 +163,16 @@ button{
 
 @media (min-width: 1280px) {
   * {
-    font-size: 1em;
+    font-size: 1.05em;
+  }
+
+  #logo{
+    left: 20px;
+  }
+
+  ul{
+    padding-left: 250px;
+    padding-right: 250px;
   }
 }
 
@@ -179,10 +188,6 @@ button{
 @media (min-width: 3840px) {
   * {
     font-size: 1.2em;
-  }
-
-  #logo{
-    height: 10%;
   }
 }
 

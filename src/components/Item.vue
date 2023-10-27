@@ -46,7 +46,9 @@ const props = defineProps({
 }
 
 @media (min-width: 1280px) {
-  
+  .item-summary{
+    padding-bottom: 15px;
+  }  
 }
 
 @media (min-width: 1600px) {

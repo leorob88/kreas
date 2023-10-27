@@ -227,6 +227,39 @@ onUnmounted(() => {
   }
 }
 
+@media (min-width: 1280px) {
+  #cart-page{
+    font-size: 0.85em;
+  }
+
+  #summary{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+  }
+
+  #no-items{
+    font-size: 1.3em;
+    padding-left: 31px;
+  }
+
+  #cart{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  .cart-button{
+    font-size: 1.1em;
+    width: 120px;
+  }
+  
+  #cart-list{
+    font-size: 1.1em;
+    width: 88%;
+  }
+}
+
 @media (min-width: 3840px) {
   #cart{
     display: grid;

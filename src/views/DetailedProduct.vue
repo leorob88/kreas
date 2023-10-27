@@ -87,7 +87,7 @@ onUnmounted(() => {
                     </span>
                     <span id="confirm">
                         <button @click="addToCart(item, howMany); howManyVisible = false; howMany = 0" :disabled="howMany < 1">Ok</button>
-                        <button @click="howManyVisible = false; howMany = 50">Cancel</button>
+                        <button @click="howManyVisible = false; howMany = 0">Cancel</button>
                     </span>
                 </span>
             </div>
@@ -95,7 +95,7 @@ onUnmounted(() => {
             <p>
                 Currently added: {{ getQuantityByName(item.name) }} (max 50)
                 <div>
-                    <button v-if="getQuantityByName(item.name) > 0" @click="removeToCart(item.name)">Remove from cart</button>
+                    <button id="remove" v-if="getQuantityByName(item.name) > 0" @click="removeToCart(item.name)">Remove from cart</button>
                 </div>
             </p>
         </div>
@@ -327,6 +327,67 @@ p{
   .quantity{
     padding-top: 2px;
     width: 60px;
+  }
+}
+
+@media (min-width: 1280px) {
+  #part-1{
+    padding-left: 15px;
+    justify-content: flex-start;
+  }
+
+  #image{
+    width: 10%;
+  }
+
+  #part-1, #part-2{
+    font-size: 1.02em;
+  }
+
+  #part-1 p{
+    margin-top: 0;
+  }
+
+  #text{
+    margin-top: 32px;
+    margin-bottom: 0;
+    padding-left: 15px;
+  }
+
+  #part-2 p{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #detailed button{
+    height: 36px;
+  }
+
+  #selectors{
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  #selectors button, #confirm button{
+    font-size: 1.05em;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #selectors button{
+    width: 36px;
+  }
+
+  .quantity{
+    font-size: 1.08em;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 2px;
+    width: 38px;
+  }
+
+  #part-2 #remove{
+    font-size: 1.1em;
   }
 }
 
