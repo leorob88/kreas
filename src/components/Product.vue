@@ -1,6 +1,7 @@
 <script setup>
 
 import { computed } from "vue";
+import { storeToRefs } from "pinia";
 import { useCartStore } from "../stores/cartStore";
 
 const props = defineProps({
@@ -12,13 +13,16 @@ const props = defineProps({
 
 const cartStore = useCartStore();
 const {removeToCart, getQuantityByName} = cartStore;
+const {uniqueList} = storeToRefs(cartStore);
 const quantity = computed(() => getQuantityByName(props.item.name));
 const totalPrice = computed(() => props.item.price * quantity.value).value.toFixed(2);
 
+const divId = "cart-list-" + uniqueList.value.findIndex(element => element.name === props.item.name);
+
 </script>
 
-<template class="product">
-  <div>
+<template>
+  <div :id="[divId]">
     <router-link :to="'/details/' + props.item.name">
       <img :src="props.item.image" class="preview-cart" :alt="props.item.name"/>
     </router-link>
@@ -83,12 +87,10 @@ const totalPrice = computed(() => props.item.price * quantity.value).value.toFix
   }  
 }
 
-@media (min-width: 1600px) {
-  
-}
-
 @media (min-width: 1920px) {
-  
+  .product-summary{
+    padding-bottom: 15px;
+  }  
 }
 
 @media (min-width: 2560px) {

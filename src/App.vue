@@ -51,9 +51,7 @@ onUnmounted(() => {
   window.removeEventListener("resize", fixLogo);
 })
 
-//fatto il css per:
-//320
-//576
+//manca il css da 2560
 
 </script>
 
@@ -71,6 +69,11 @@ onUnmounted(() => {
 </template>
 
 <style>
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
 
 * {
   font-family: "Quicksand", "Verdana", "Arial", serif;
@@ -114,9 +117,13 @@ ul{
 }
 
 button{
-  background-color: white;
+  background-color: rgb(245, 245, 245);
   border: solid black 1px;
   border-radius: 3px;
+}
+
+button:hover{
+  background-color: white;
 }
 
 @media (min-width: 576px) {

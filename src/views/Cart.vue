@@ -271,10 +271,29 @@ onUnmounted(() => {
   }
 }
 
+@media (min-width: 1920px) {
+  #summary{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 30px;
+  }
+
+  #no-items{
+    padding-left: 40px;
+  }
+}
+
+@media (min-width: 2560px) {
+  #cart{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 @media (min-width: 3840px) {
   #cart{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 

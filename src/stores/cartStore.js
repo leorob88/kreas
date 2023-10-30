@@ -37,6 +37,27 @@ export const useCartStore = defineStore("cartStore", () => {
 
     const removeToCart = (name) => {
         products.value = products.value.filter(product => product.name !== name);
+        //graphic feature to scroll to top when only one row remains
+        //in teoria funzionava ma sembrava funzionare solo a volte, capire perché, dove sta il possibile errore
+        //riprovare di nuovo che ho fatto una correzione, se va ok, altrimenti vedere perché
+        let lastId = "cart-list-" + (uniqueList.value.length - 1);
+        let lastDivBottom = document.getElementById(lastId).getBoundingClientRect().bottom;
+        let lastDivHeight = document.getElementById(lastId).getBoundingClientRect().height;
+        if (screen.width >= 1280) {
+            if ((window.innerHeight - lastDivBottom) > lastDivHeight) {
+                window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+            }
+        } else {
+            if (screen.width < 768 && uniqueList.value.length < 2) {
+                if ((window.innerHeight - lastDivBottom) > lastDivHeight) {
+                    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+                }
+            } else if (screen.width < 1280 && uniqueList.value.length < 3) {
+                if ((window.innerHeight - lastDivBottom) > lastDivHeight) {
+                    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
+                }
+            }
+        }
     }
 
     const clearCart = () => {
