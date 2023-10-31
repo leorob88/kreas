@@ -51,7 +51,7 @@ onUnmounted(() => {
   window.removeEventListener("resize", fixLogo);
 })
 
-//manca il css da 2560
+//manca il css per 2560 e 3840
 
 </script>
 

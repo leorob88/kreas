@@ -90,7 +90,7 @@ onUnmounted(() => {
                     </span>
                     <span id="confirm">
                         <button @click="addToCart(item, howMany); howManyVisible = false; howMany = 0" :disabled="howMany < 1">Ok</button>
-                        <button @click="howManyVisible = false; howMany = 50">Cancel</button>
+                        <button @click="howManyVisible = false; howMany = 0">Cancel</button>
                     </span>
                 </span>
             </div>
