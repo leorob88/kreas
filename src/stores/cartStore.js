@@ -45,7 +45,7 @@ export const useCartStore = defineStore("cartStore", () => {
         let cartTop = document.getElementById("cart").offsetTop;
         if ((window.innerHeight - lastDivBottom) > 10) {
             if ((cartTop + cartHeight) > window.innerHeight) {
-                lastDiv.scrollIntoView(false);
+                lastDiv.scrollIntoView({block: "end", behavior: "smooth"});
             } else {
                 window.scrollTo({top: 0, left: 0, behavior: "smooth"});
             }

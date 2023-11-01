@@ -94,7 +94,13 @@ const divId = "cart-list-" + uniqueList.value.findIndex(element => element.name 
 }
 
 @media (min-width: 2560px) {
-  
+  .product-summary{
+    padding-bottom: 20px;
+  }
+
+  .product-button{
+    width: 140px;
+  }  
 }
 
 @media (min-width: 3840px) {

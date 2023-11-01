@@ -51,16 +51,11 @@ const props = defineProps({
   }  
 }
 
-@media (min-width: 1600px) {
-  
-}
-
-@media (min-width: 1920px) {
-  
-}
-
 @media (min-width: 2560px) {
-  
+  .item-summary{
+    font-size: 1em;
+    padding-bottom: 30px;
+  }  
 }
 
 @media (min-width: 3840px) {

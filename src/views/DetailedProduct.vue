@@ -41,7 +41,7 @@ const addObserver = () => {
                 if (mutation) {
                     let properties = window.getComputedStyle(page.value);
                     height.value = window.innerHeight - properties.getPropertyValue('top');
-                    if (screen.width === 1600) {height.value += 1}
+                    if (screen.width >= 1600) {height.value += 1}
                 }
             })
         })
@@ -291,6 +291,10 @@ p{
     width: 42%;
   }
 
+  #text{
+    width: 48%;
+  }
+
   #part-1 p{
     margin-top: 28px;
     margin-bottom: 0;
@@ -352,6 +356,7 @@ p{
   }
 
   #text{
+    width: 85%;
     margin-top: 32px;
     margin-bottom: 0;
     padding-left: 15px;
@@ -391,6 +396,64 @@ p{
 
   #part-2 #remove{
     font-size: 1.1em;
+  }
+}
+
+@media (min-width: 2560px) {
+  #part-1{
+    padding-left: 25px;
+  }
+
+  #image{
+    padding-top: 80px;
+  }
+
+  #part-1, #part-2{
+    font-size: 1.3em;
+  }
+
+  #text{
+    margin-top: 80px;
+    padding-left: 25px;
+  }
+
+  #part-2 p{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  #add{
+    font-size: 0.9em;
+  }
+
+  #detailed button{
+    height: 48px;
+  }
+
+  #selectors{
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  #selectors button, #confirm button{
+    font-size: 0.95em;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+
+  #selectors button{
+    width: 48px;
+  }
+
+  .quantity{
+    font-size: 0.94em;
+    margin-left: 4px;
+    margin-right: 4px;
+    width: 50px;
+  }
+
+  #part-2 #remove{
+    font-size: 0.95em;
   }
 }
 

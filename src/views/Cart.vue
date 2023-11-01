@@ -46,7 +46,7 @@ const addObserver = () => {
                 if (mutation) {
                     let properties = window.getComputedStyle(page.value);
                     height.value = window.innerHeight - properties.getPropertyValue('top');
-                    if (screen.width === 1600) {height.value += 1}
+                    if (screen.width >= 1600) {height.value += 1}
                 }
             })
         })
@@ -185,10 +185,6 @@ onUnmounted(() => {
   .cart-button{
     font-size: 1em;
     width: 130px;
-    margin: 0;
-    padding: 2px;
-    margin-top: 7px;
-    margin-bottom: 7px;
   }
 
   #cart{
@@ -284,9 +280,36 @@ onUnmounted(() => {
 }
 
 @media (min-width: 2560px) {
+  #cart-page{
+    font-size: 0.92em;
+  }
+  
+  #summary{
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  #no-items{
+    font-size: 1.6em;
+    padding-top: 80px;
+    padding-left: 45px;
+  }
+
   #cart{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+  }
+
+  .cart-button{
+    font-size: 1.2em;
+    width: 180px;
+  }
+
+  #cart-list{
+    font-size: 1.2em;
+    width: 86%;
   }
 }
 

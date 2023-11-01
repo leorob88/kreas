@@ -73,9 +73,11 @@ const showList = computed(() => !loading.value && loaded.value);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  .home-list{
-    width: 80%;
+@media (min-width: 2560px) {
+  #home{
+    padding-top: 80px;
   }
 }
 
@@ -84,10 +86,6 @@ const showList = computed(() => !loading.value && loaded.value);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin:-8px;
-  }
-
-  .home-list{
-    width: 64%;
   }
 }
 
