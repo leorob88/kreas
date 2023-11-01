@@ -77,6 +77,7 @@ const showList = computed(() => !loading.value && loaded.value);
 
 @media (min-width: 1920px) {
   #home{
+    padding-top: 60px;
     padding-left: 8px;
   }
 }
@@ -90,6 +91,7 @@ const showList = computed(() => !loading.value && loaded.value);
 
 @media (min-width: 3840px) {
   #home{
+    padding-top: 110px;
     padding-left: 10px;
   }
 }

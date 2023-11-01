@@ -176,13 +176,6 @@ button:hover{
   }
 
   ul{
-    padding-left: 250px;
-    padding-right: 250px;
-  }
-}
-
-@media (min-width: 1600px) {
-  ul{
     padding-left: 200px;
     padding-right: 200px;
   }

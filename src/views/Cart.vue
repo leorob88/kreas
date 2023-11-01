@@ -271,10 +271,12 @@ onUnmounted(() => {
   #summary{
     padding-left: 40px;
     padding-right: 40px;
+    padding-top: 60px;
     padding-bottom: 30px;
   }
 
   #no-items{
+    padding-top: 60px;
     padding-left: 40px;
   }
 }
@@ -314,9 +316,36 @@ onUnmounted(() => {
 }
 
 @media (min-width: 3840px) {
+  #cart-page{
+    font-size: 0.84em;
+  }
+  
+  #summary{
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 110px;
+    padding-bottom: 30px;
+  }
+
+  #no-items{
+    font-size: 2.48em;
+    padding-top: 110px;
+    padding-left: 55px;
+  }
+
   #cart{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .cart-button{
+    font-size: 1.42em;
+    width: 350px;
+  }
+
+  #cart-list{
+    font-size: 1.2em;
+    width: 86%;
   }
 }
 

@@ -104,7 +104,9 @@ const divId = "cart-list-" + uniqueList.value.findIndex(element => element.name 
 }
 
 @media (min-width: 3840px) {
-  
+  .product-button{
+    width: 230px;
+  }  
 }
 
 </style>

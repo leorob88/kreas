@@ -399,6 +399,16 @@ p{
   }
 }
 
+@media (min-width: 1920px) {
+  #image{
+    padding-top: 60px;
+  }
+
+  #text{
+    margin-top: 60px;
+  }
+}
+
 @media (min-width: 2560px) {
   #part-1{
     padding-left: 25px;
@@ -458,8 +468,68 @@ p{
 }
 
 @media (min-width: 3840px) {
+  #part-1{
+    padding-left: 50px;
+  }
+
   #image{
-    width: 30%
+    width: 15%;
+    padding-top: 110px;
+  }
+
+  #part-1, #part-2{
+    font-size: 1.47em;
+  }
+
+  #text{
+    width: 80%;
+    margin-top: 110px;
+    padding-left: 50px;
+  }
+
+  #part-2 p{
+    font-size: 1.18em;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  #add{
+    font-size: 0.87em;
+  }
+
+  #detailed button{
+    height: 120px;
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  #selectors{
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+
+  #selectors button, #confirm button{
+    font-size: 0.79em;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #selectors button{
+    width: 118px;
+  }
+
+  .quantity{
+    font-size: 0.8em;
+    border: solid black 3px;
+    border-radius: 9px;
+    padding-top: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 125px;
+  }
+
+  #part-2 #remove{
+    font-size: 0.83em;
   }
 }
 

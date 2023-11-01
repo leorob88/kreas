@@ -4,7 +4,6 @@ function getStateFromLocalStorage(storeName) {
     try {
         return JSON.parse(storedState || "{}");
     } catch (err) {
-        console.error(err);
         return {};
     };
 }

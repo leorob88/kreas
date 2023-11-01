@@ -55,11 +55,13 @@ const props = defineProps({
   .item-summary{
     font-size: 1em;
     padding-bottom: 30px;
-  }  
+  }
 }
 
 @media (min-width: 3840px) {
-  
+  .item-summary{
+    padding-bottom: 50px;
+  }  
 }
 
 </style>
