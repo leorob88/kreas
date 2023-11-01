@@ -51,8 +51,6 @@ onUnmounted(() => {
   window.removeEventListener("resize", fixLogo);
 })
 
-//manca il css per 3840
-
 </script>
 
 <template>
@@ -183,15 +181,44 @@ button:hover{
   }
 }
 
+@media (min-width: 1600px) {
+  ul{
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+}
+
+@media (min-width: 1920px) {
+  ul{
+    padding-left: 400px;
+    padding-right: 400px;
+  }
+}
+
 @media (min-width: 2560px) {
   * {
     font-size: 1.1em;
+  }
+
+  ul{
+    padding-left: 540px;
+    padding-right: 540px;
   }
 }
 
 @media (min-width: 3840px) {
   * {
     font-size: 1.2em;
+  }
+
+  ul{
+    padding-left: 800px;
+    padding-right: 800px;
+  }
+
+  button{
+    border: solid black 3px;
+    border-radius: 9px;
   }
 }
 

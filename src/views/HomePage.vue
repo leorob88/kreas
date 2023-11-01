@@ -75,17 +75,22 @@ const showList = computed(() => !loading.value && loaded.value);
   }
 }
 
+@media (min-width: 1920px) {
+  #home{
+    padding-left: 8px;
+  }
+}
+
 @media (min-width: 2560px) {
   #home{
     padding-top: 80px;
+    padding-left: 10px;
   }
 }
 
 @media (min-width: 3840px) {
   #home{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin:-8px;
+    padding-left: 10px;
   }
 }
 
