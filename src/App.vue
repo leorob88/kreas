@@ -54,7 +54,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <img src="./assets/kreas logo.png" alt="logo" id="logo" :style="{height : top}">
+  <img src="./assets/kreas-logo.png" alt="logo" id="logo" :style="{height : top}">
   <div id="main">
     <nav>
       <ul>
